@@ -12,8 +12,8 @@ const HeroSection = () => {
     seconds: 0
   });
 
-  // Countdown to hackathon date (example: 30 days from now)
-  const hackathonDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+  // Countdown to hackathon date (March 15, 2024)
+  const hackathonDate = new Date('2024-03-15T00:00:00');
 
   useEffect(() => {
     const timer = setInterval(() => {
