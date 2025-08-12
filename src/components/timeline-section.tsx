@@ -1,92 +1,143 @@
-import { Calendar, Clock, MapPin, Users } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Code, Lightbulb, Trophy, Coffee } from 'lucide-react';
 
 const TimelineSection = () => {
+  const timeSlots = [
+    '8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30', 
+    '12:00', '12:30', '1:00', '1:30', '2:00', '2:30', '3:00', '3:30', 
+    '4:00', '4:30', '5:00', '5:30', '6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00'
+  ];
+
   const timelineEvents = [
     {
-      time: "08:00 AM",
-      title: "Registration & Check-in",
-      description: "Welcome coffee, team formation, and opening ceremony",
+      title: "Inauguration",
+      startTime: '8:00',
+      duration: 1, // slots
+      color: 'from-red-500 to-red-600',
       icon: Users,
-      day: "Day 1"
+      description: "Welcome ceremony and team formation"
     },
     {
-      time: "10:00 AM",
-      title: "Opening Ceremony",
-      description: "Keynote speeches, problem statements reveal, and mentor introductions",
-      icon: Calendar,
-      day: "Day 1"
+      title: "The Art of Hacking (Workshop)",
+      startTime: '9:30',
+      duration: 3,
+      color: 'from-purple-500 to-purple-600',
+      icon: Code,
+      description: "Essential hacking techniques and methodologies"
     },
     {
-      time: "11:00 AM",
-      title: "Hacking Begins!",
-      description: "48-hour coding marathon starts. Teams begin working on their projects",
-      icon: Clock,
-      day: "Day 1"
+      title: "Null Core",
+      startTime: '10:30',
+      duration: 2,
+      color: 'from-blue-500 to-blue-600',
+      icon: Code,
+      description: "Core programming fundamentals"
     },
     {
-      time: "01:00 PM",
-      title: "Lunch Break",
-      description: "Networking lunch with sponsors and mentors",
-      icon: MapPin,
-      day: "Day 1"
+      title: "GlitchGround",
+      startTime: '10:00',
+      duration: 4,
+      color: 'from-yellow-500 to-yellow-600',
+      icon: Lightbulb,
+      description: "Creative problem solving arena"
     },
     {
-      time: "03:00 PM",
-      title: "Technical Workshops",
-      description: "Parallel workshops on Cloud, AI/ML, and Web3 technologies",
+      title: "Beat Overflow",
+      startTime: '11:00',
+      duration: 3,
+      color: 'from-indigo-500 to-indigo-600',
+      icon: Code,
+      description: "Music and coding fusion event"
+    },
+    {
+      title: "Lunch",
+      startTime: '1:00',
+      duration: 1,
+      color: 'from-orange-500 to-orange-600',
+      icon: Coffee,
+      description: "Networking lunch break"
+    },
+    {
+      title: "The Art of Hacking (Workshop)",
+      startTime: '3:00',
+      duration: 1,
+      color: 'from-purple-500 to-purple-600',
+      icon: Code,
+      description: "Advanced techniques session"
+    },
+    {
+      title: "Tune Tracker",
+      startTime: '12:30',
+      duration: 2,
+      color: 'from-pink-500 to-pink-600',
       icon: Users,
-      day: "Day 1"
+      description: "Music tracking challenge"
     },
     {
-      time: "07:00 PM",
-      title: "Dinner & Networking",
-      description: "Community dinner and informal networking sessions",
-      icon: MapPin,
-      day: "Day 1"
-    },
-    {
-      time: "10:00 PM",
-      title: "Midnight Snacks",
-      description: "Energy boost for night owls continuing to code",
-      icon: Clock,
-      day: "Day 1"
-    },
-    {
-      time: "08:00 AM",
-      title: "Breakfast & Mid-point Check",
-      description: "Healthy breakfast and optional project check-ins",
-      icon: Calendar,
-      day: "Day 2"
-    },
-    {
-      time: "02:00 PM",
-      title: "Mentor Sessions",
-      description: "One-on-one mentorship and technical guidance",
+      title: "Tune Tracker",
+      startTime: '2:30',
+      duration: 2,
+      color: 'from-pink-500 to-pink-600',
       icon: Users,
-      day: "Day 2"
+      description: "Music tracking challenge - Round 2"
     },
     {
-      time: "06:00 PM",
-      title: "Project Submission",
-      description: "Final submission deadline for all participants",
-      icon: Clock,
-      day: "Day 2"
+      title: "Paper to Pixel",
+      startTime: '1:30',
+      duration: 2,
+      color: 'from-green-500 to-green-600',
+      icon: Lightbulb,
+      description: "Digital transformation workshop"
     },
     {
-      time: "07:00 PM",
-      title: "Project Presentations",
-      description: "5-minute pitch presentations to judges",
+      title: "Paper to Pixel",
+      startTime: '3:30',
+      duration: 2,
+      color: 'from-green-500 to-green-600',
+      icon: Lightbulb,
+      description: "Digital transformation workshop - Session 2"
+    },
+    {
+      title: "Escape Room",
+      startTime: '2:00',
+      duration: 2,
+      color: 'from-teal-500 to-teal-600',
       icon: MapPin,
-      day: "Day 2"
+      description: "Collaborative puzzle solving"
     },
     {
-      time: "09:00 PM",
-      title: "Awards & Closing",
-      description: "Winner announcements, prize distribution, and closing ceremony",
-      icon: Calendar,
-      day: "Day 2"
+      title: "Escape Room",
+      startTime: '4:00',
+      duration: 2,
+      color: 'from-teal-500 to-teal-600',
+      icon: MapPin,
+      description: "Collaborative puzzle solving - Round 2"
+    },
+    {
+      title: "Beyond Screen",
+      startTime: '3:00',
+      duration: 2,
+      color: 'from-cyan-500 to-cyan-600',
+      icon: Trophy,
+      description: "Innovation beyond traditional interfaces"
+    },
+    {
+      title: "Beyond Screen",
+      startTime: '5:00',
+      duration: 2,
+      color: 'from-cyan-500 to-cyan-600',
+      icon: Trophy,
+      description: "Innovation beyond traditional interfaces - Final"
     }
   ];
+
+  const getEventPosition = (startTime: string) => {
+    const index = timeSlots.indexOf(startTime);
+    return index >= 0 ? index : 0;
+  };
+
+  const getEventWidth = (duration: number) => {
+    return duration;
+  };
 
   return (
     <section id="timeline" className="py-20 relative">
@@ -96,56 +147,74 @@ const TimelineSection = () => {
             Event <span className="text-primary neon-text">Timeline</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            A carefully planned 48-hour journey from registration to final presentations
+            A carefully planned schedule of exciting events and workshops
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary transform md:-translate-x-1/2" />
-
-          {timelineEvents.map((event, index) => (
-            <div 
-              key={index}
-              className={`relative flex items-center mb-12 animate-slide-up ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-              }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              {/* Timeline Dot */}
-              <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-background transform md:-translate-x-1/2 z-10 neon-glow" />
-
-              {/* Content Card */}
-              <div className={`glass glass-hover rounded-xl p-6 ml-20 md:ml-0 ${
-                index % 2 === 0 ? 'md:mr-8 md:ml-0' : 'md:ml-8 md:mr-0'
-              } md:w-5/12 group`}>
-                {/* Day Badge */}
-                <div className="inline-block bg-gradient-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold mb-3">
-                  {event.day}
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="bg-accent/20 p-3 rounded-lg">
-                    <event.icon className="h-6 w-6 text-accent" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <span className="text-primary font-bold text-lg">{event.time}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                      {event.title}
-                    </h3>
-                    <p className="text-foreground/70 leading-relaxed">
-                      {event.description}
-                    </p>
-                  </div>
-                </div>
+        {/* Modern Timeline Layout */}
+        <div className="glass rounded-2xl p-6 overflow-x-auto">
+          {/* Time Header */}
+          <div className="grid grid-flow-col auto-cols-max gap-4 mb-8 min-w-max">
+            {timeSlots.map((time, index) => (
+              <div key={index} className="text-center min-w-[60px]">
+                <span className="text-sm text-foreground/60 font-medium">{time}</span>
               </div>
+            ))}
+          </div>
 
-              {/* Spacer for desktop */}
-              <div className="hidden md:block md:w-5/12" />
+          {/* Events Grid */}
+          <div className="relative min-h-[400px] min-w-max">
+            <div className="grid grid-flow-col auto-cols-max gap-4">
+              {timeSlots.map((_, index) => (
+                <div key={index} className="min-w-[60px] h-full border-l border-foreground/10 first:border-l-0" />
+              ))}
             </div>
-          ))}
+
+            {/* Event Blocks */}
+            <div className="absolute inset-0">
+              {timelineEvents.map((event, index) => {
+                const position = getEventPosition(event.startTime);
+                const width = getEventWidth(event.duration);
+                const row = Math.floor(index / 5); // Simple row assignment
+                
+                return (
+                  <div
+                    key={index}
+                    className={`absolute rounded-lg p-3 cursor-pointer transition-all duration-300 hover:scale-105 hover:z-10 animate-fade-in group`}
+                    style={{
+                      left: `${position * 64 + 8}px`, // 60px + 4px gap
+                      top: `${row * 80 + 20}px`,
+                      width: `${width * 64 - 8}px`,
+                      height: '60px',
+                      background: `linear-gradient(135deg, ${event.color.split(' ')[1]}, ${event.color.split(' ')[3]})`,
+                      animationDelay: `${index * 0.1}s`
+                    }}
+                  >
+                    <div className="flex items-center h-full space-x-2">
+                      <event.icon className="h-4 w-4 text-white flex-shrink-0" />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-white font-semibold text-sm truncate">
+                          {event.title}
+                        </h4>
+                        <p className="text-white/80 text-xs truncate">
+                          {event.startTime}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Tooltip */}
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                      <div className="glass rounded-lg p-3 min-w-[200px] max-w-[300px]">
+                        <h5 className="font-semibold text-foreground mb-1">{event.title}</h5>
+                        <p className="text-sm text-foreground/70">{event.description}</p>
+                        <p className="text-xs text-primary mt-2">Starting at {event.startTime}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
 
         {/* Call to Action */}
@@ -155,7 +224,7 @@ const TimelineSection = () => {
               Ready to Begin Your Journey?
             </h3>
             <p className="text-foreground/70 mb-6">
-              Join us for an unforgettable 48-hour adventure of innovation, learning, and building amazing projects.
+              Join us for an unforgettable experience of innovation, learning, and building amazing projects.
             </p>
             <button 
               className="bg-gradient-primary text-primary-foreground font-semibold px-8 py-3 rounded-lg neon-glow animate-glow-pulse"
