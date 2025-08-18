@@ -1,116 +1,141 @@
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, Code, Cpu, Database, Globe, Lightbulb, Palette, Presentation, Puzzle } from 'lucide-react';
+import { useState } from "react";
+import {
+  Camera,
+  ChevronDown,
+  ChevronUp,
+  Lightbulb,
+  Link,
+  Palette,
+  Presentation,
+  Shuffle,
+  User,
+  VideotapeIcon,
+} from "lucide-react";
 
 const EventsSection = () => {
   const [expandedEvent, setExpandedEvent] = useState<string | null>(null);
 
   const technicalEvents = [
     {
-      id: 'web-dev',
-      title: 'Web Development Challenge',
-      icon: Globe,
-      shortDesc: 'Build responsive, modern web applications',
-      fullDesc: 'Create a full-stack web application using modern frameworks like React, Vue, or Angular. Focus on user experience, responsive design, and clean code architecture. Participants will have access to cloud services and deployment platforms.',
-      prizes: '₹25,000 | ₹15,000 | ₹10,000',
-      duration: '24 hours',
-      team: '1-4 members'
+      id: "web-dev",
+      title: "Paper Presentation",
+      icon: Presentation,
+      shortDesc: "Present research or innovative ideas formally and clearly",
+      fullDesc:
+        "Participants showcase their research, innovative ideas, or technical concepts through structured presentations. They explain their topic with data, analysis, and visuals. Judges assess based on clarity, relevance, and originality. This event encourages public speaking and critical thinking. A great platform to share knowledge with peers and experts",
+      prizes: "",
+      duration: "5 minutes",
+      team: "1-4 members",
     },
     {
-      id: 'ai-ml',
-      title: 'AI/ML Innovation',
-      icon: Cpu,
-      shortDesc: 'Develop intelligent solutions using AI/ML',
-      fullDesc: 'Design and implement AI/ML models to solve real-world problems. Use datasets, APIs, and cloud ML services. Projects can include computer vision, NLP, predictive analytics, or recommendation systems.',
-      prizes: '₹30,000 | ₹20,000 | ₹10,000',
-      duration: '36 hours',
-      team: '2-5 members'
+      id: "ai-ml",
+      title: "Tech Quiz",
+      icon: Lightbulb,
+      shortDesc: "Compete in a timed quiz on core technical subjects",
+      fullDesc:
+        "A brain-teasing quiz covering AI, Machine Learning, Operating Systems, DBMS, and core engineering subjects. Teams compete to answer questions under time pressure. Questions range from basics to advanced problem-solving. Quick thinking and teamwork are essential. An engaging way to sharpen technical knowledge",
+      prizes: "",
+      duration: "",
+      team: "2-4 members",
     },
     {
-      id: 'mobile-dev',
-      title: 'Mobile App Development',
-      icon: Code,
-      shortDesc: 'Create innovative mobile applications',
-      fullDesc: 'Develop native or cross-platform mobile applications for Android/iOS. Focus on user-centric design, performance optimization, and innovative features. Flutter, React Native, or native development welcome.',
-      prizes: '₹20,000 | ₹12,000 | ₹8,000',
-      duration: '30 hours',
-      team: '1-4 members'
+      id: "mobile-dev",
+      title: "Tech Debates",
+      icon: User,
+      shortDesc: "Debate trending tech topics with facts and logic",
+      fullDesc:
+        "Participants are split into teams to debate trending tech issues such as AI ethics, data privacy, and automation impacts. The event sharpens analytical and communication skills. Judges evaluate clarity, logical reasoning, and factual accuracy. Participants learn to view technology from multiple perspectives. A mix of intellect and persuasive power",
+      prizes: "",
+      duration: "30 minutes",
+      team: "1 member",
     },
     {
-      id: 'blockchain',
-      title: 'Blockchain & DeFi',
-      icon: Database,
-      shortDesc: 'Build decentralized solutions',
-      fullDesc: 'Create blockchain-based applications, smart contracts, or DeFi solutions. Use Ethereum, Polygon, or other blockchain platforms. Focus on security, scalability, and real-world utility.',
-      prizes: '₹25,000 | ₹15,000 | ₹10,000',
-      duration: '32 hours',
-      team: '2-4 members'
-    }
+      id: "blockchain",
+      title: "UI / UX Design Challenge",
+      icon: Palette,
+      shortDesc: "Design creative, user-friendly app or website mock-ups",
+      fullDesc:
+        "Participants design creative, functional mock-ups for apps or websites. The focus is on aesthetics, usability, and improving user experience. Tools like Figma or Adobe XD can be used. Designs are judged for creativity, functionality, and clarity. A perfect stage for aspiring designers to showcase their skills",
+      prizes: "",
+      duration: "30 minutes",
+      team: "1 member",
+    },
   ];
 
   const nonTechnicalEvents = [
     {
-      id: 'pitch-perfect',
-      title: 'Pitch Perfect',
-      icon: Presentation,
-      shortDesc: 'Present your startup idea to investors',
-      fullDesc: 'Develop and present a compelling business pitch for your tech startup idea. Focus on market analysis, business model, financial projections, and go-to-market strategy. Professional mentors and investors will evaluate.',
-      prizes: '₹15,000 | ₹10,000 | ₹5,000',
-      duration: '8 hours',
-      team: '1-3 members'
+      id: "pitch-perfect",
+      title: "Connections",
+      icon: Link,
+      shortDesc: "Find the hidden link between given clues",
+      fullDesc:
+        "Players are shown a series of images or text clues. The goal is to deduce the connection between them. The challenge combines observation, reasoning, and lateral thinking. Questions can be tech-related or purely logical. A fun way to spark creativity and quick thinking",
+      prizes: "",
+      duration: "30 minutes",
+      team: "1-3 members",
     },
     {
-      id: 'design-thinking',
-      title: 'Design Thinking Workshop',
-      icon: Lightbulb,
-      shortDesc: 'Solve problems with human-centered design',
-      fullDesc: 'Apply design thinking methodology to solve complex social or business problems. Focus on empathy, ideation, prototyping, and testing. Create innovative solutions with user research and validation.',
-      prizes: '₹12,000 | ₹8,000 | ₹5,000',
-      duration: '12 hours',
-      team: '3-5 members'
+      id: "design-thinking",
+      title: "AdZap",
+      icon: Camera,
+      shortDesc: "Create instant ads for quirky, imaginary products",
+      fullDesc:
+        "Teams are given quirky or imaginary products and must create spontaneous, humorous advertisements. Creativity and humor are key. Participants can use acting, slogans, or props. Judges assess originality, wit, and audience engagement. A fun-filled event that blends drama and marketing skills",
+      prizes: "",
+      duration: "30 minutes",
+      team: "3-5 members",
     },
     {
-      id: 'ui-ux',
-      title: 'UI/UX Design Challenge',
-      icon: Palette,
-      shortDesc: 'Design exceptional user experiences',
-      fullDesc: 'Create stunning user interfaces and exceptional user experiences for given problem statements. Use design tools like Figma, Adobe XD, or Sketch. Focus on usability, accessibility, and visual appeal.',
-      prizes: '₹10,000 | ₹7,000 | ₹3,000',
-      duration: '16 hours',
-      team: '1-3 members'
+      id: "ui-ux",
+      title: "Tech Pictionary",
+      icon: VideotapeIcon,
+      shortDesc: "Draw tech terms for your team to guess",
+      fullDesc:
+        "One player draws while teammates guess the technical term or concept. The challenge is to think visually and simplify complex ideas. The clock adds excitement and tension. This event combines art, tech knowledge, and quick thinking. A lighthearted yet competitive activity for all skill levels",
+      prizes: "",
+      duration: "30 minutes",
+      team: "1-3 members",
     },
     {
-      id: 'brain-teasers',
-      title: 'Tech Quiz & Brain Teasers',
-      icon: Puzzle,
-      shortDesc: 'Test your technical knowledge',
-      fullDesc: 'Participate in rapid-fire technical quizzes covering programming, algorithms, system design, and latest tech trends. Individual and team rounds with coding challenges and logical puzzles.',
-      prizes: '₹8,000 | ₹5,000 | ₹2,000',
-      duration: '4 hours',
-      team: '1-2 members'
-    }
+      id: "brain-teasers",
+      title: "Tagline Twist",
+      icon: Shuffle,
+      shortDesc: "Rewrite famous slogans with a fun twist",
+      fullDesc:
+        "Participants take well-known taglines and give them a creative twist. The goal is to make it witty, humorous, or tech-related. The event tests creativity, wordplay, and marketing instincts. Judges look for originality and comedic impact. A fun challenge that sparks laughter and innovation",
+      prizes: "",
+      duration: "30 minutes",
+      team: "1-2 members",
+    },
   ];
 
   const toggleEvent = (eventId: string) => {
     setExpandedEvent(expandedEvent === eventId ? null : eventId);
   };
 
-  const EventCard = ({ event, type }: { event: any, type: string }) => {
+  const EventCard = ({ event, type }: { event: any; type: string }) => {
     const isExpanded = expandedEvent === event.id;
     const IconComponent = event.icon;
 
     return (
-      <div className={`glass glass-hover rounded-xl transition-all duration-500 ${
-        isExpanded ? 'ring-2 ring-primary/50' : ''
-      }`}>
-        <div 
+      <div
+        className={`glass glass-hover rounded-xl transition-all duration-500 ${
+          isExpanded ? "ring-2 ring-primary/50" : ""
+        }`}
+      >
+        <div
           className="p-6 cursor-pointer"
           onClick={() => toggleEvent(event.id)}
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                type === 'technical' ? 'bg-gradient-primary' : 'bg-gradient-to-r from-accent to-primary'
-              }`}>
+              <div
+                className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                  type === "technical"
+                    ? "bg-gradient-primary"
+                    : "bg-gradient-to-r from-accent to-primary"
+                }`}
+              >
                 <IconComponent className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -121,7 +146,11 @@ const EventsSection = () => {
               </div>
             </div>
             <div className="text-primary">
-              {isExpanded ? <ChevronUp className="h-6 w-6" /> : <ChevronDown className="h-6 w-6" />}
+              {isExpanded ? (
+                <ChevronUp className="h-6 w-6" />
+              ) : (
+                <ChevronDown className="h-6 w-6" />
+              )}
             </div>
           </div>
 
@@ -133,15 +162,21 @@ const EventsSection = () => {
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="glass rounded-lg p-3">
                   <div className="text-sm text-foreground/60">Prize Pool</div>
-                  <div className="text-accent font-semibold">{event.prizes}</div>
+                  <div className="text-accent font-semibold">
+                    {event.prizes}
+                  </div>
                 </div>
                 <div className="glass rounded-lg p-3">
                   <div className="text-sm text-foreground/60">Duration</div>
-                  <div className="text-primary font-semibold">{event.duration}</div>
+                  <div className="text-primary font-semibold">
+                    {event.duration}
+                  </div>
                 </div>
                 <div className="glass rounded-lg p-3">
                   <div className="text-sm text-foreground/60">Team Size</div>
-                  <div className="text-foreground font-semibold">{event.team}</div>
+                  <div className="text-foreground font-semibold">
+                    {event.team}
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,7 +194,8 @@ const EventsSection = () => {
             <span className="text-primary neon-text">Events</span> & Challenges
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Choose your battle! Participate in technical coding challenges or showcase your creative and business skills.
+            Choose your battle! Participate in technical coding challenges or
+            showcase your creative and business skills.
           </p>
         </div>
 
@@ -170,7 +206,7 @@ const EventsSection = () => {
           </h3>
           <div className="grid lg:grid-cols-2 gap-6">
             {technicalEvents.map((event, index) => (
-              <div 
+              <div
                 key={event.id}
                 className="animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}
@@ -188,7 +224,7 @@ const EventsSection = () => {
           </h3>
           <div className="grid lg:grid-cols-2 gap-6">
             {nonTechnicalEvents.map((event, index) => (
-              <div 
+              <div
                 key={event.id}
                 className="animate-slide-up"
                 style={{ animationDelay: `${index * 0.1}s` }}

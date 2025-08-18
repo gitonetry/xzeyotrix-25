@@ -1,5 +1,5 @@
-import { Download, FileText, Eye } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Download, FileText, Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const BrochureSection = () => {
   return (
@@ -23,8 +23,12 @@ const BrochureSection = () => {
                   <div className="flex items-center justify-center h-64 md:h-80">
                     <div className="text-center space-y-4">
                       <FileText className="h-20 w-20 text-primary mx-auto" />
-                      <h3 className="text-2xl font-bold text-foreground">CyberHack 2024</h3>
-                      <p className="text-foreground/70">Official Event Brochure</p>
+                      <h3 className="text-2xl font-bold text-foreground">
+                        Xzeyotrix'25
+                      </h3>
+                      <p className="text-foreground/70">
+                        Official Event Brochure
+                      </p>
                       <div className="bg-gradient-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-semibold">
                         PDF Format
                       </div>
@@ -41,14 +45,17 @@ const BrochureSection = () => {
                     Complete Event Guide
                   </h3>
                   <p className="text-foreground/80 leading-relaxed">
-                    Our detailed brochure contains everything you need to know about CyberHack 2024, 
-                    including event schedules, rules, prizes, venue information, and much more.
+                    Our detailed brochure contains everything you need to know
+                    about Xzeyotrix'25, including event schedules, rules,
+                    prizes, venue information, and much more.
                   </p>
                 </div>
 
                 {/* What's Inside */}
                 <div className="space-y-3">
-                  <h4 className="text-xl font-semibold text-primary">What's Inside:</h4>
+                  <h4 className="text-xl font-semibold text-primary">
+                    What's Inside:
+                  </h4>
                   <ul className="space-y-2 text-foreground/80">
                     <li className="flex items-center space-x-2">
                       <div className="w-2 h-2 bg-accent rounded-full" />
@@ -83,8 +90,8 @@ const BrochureSection = () => {
                     <Download className="h-5 w-5 mr-2" />
                     Download Brochure
                   </Button>
-                  <Button 
-                    variant="outline" 
+                  <Button
+                    variant="outline"
                     className="glass-hover border-primary text-primary px-6 py-3"
                   >
                     <Eye className="h-5 w-5 mr-2" />
@@ -93,7 +100,7 @@ const BrochureSection = () => {
                 </div>
 
                 {/* File Info */}
-                <div className="grid grid-cols-3 gap-4 text-center">
+                {/* <div className="grid grid-cols-3 gap-4 text-center">
                   <div className="glass rounded-lg p-3">
                     <div className="text-sm text-foreground/60">File Size</div>
                     <div className="text-primary font-semibold">2.5 MB</div>
@@ -106,7 +113,7 @@ const BrochureSection = () => {
                     <div className="text-sm text-foreground/60">Format</div>
                     <div className="text-foreground font-semibold">PDF</div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

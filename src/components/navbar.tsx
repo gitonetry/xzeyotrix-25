@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Code, Calendar, Users, MapPin, FileText } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Code, Calendar, Users, MapPin, FileText } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,31 +12,33 @@ const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navItems = [
-    { name: 'Home', href: '/', icon: Code },
-    { name: 'Events', href: '#events', icon: Calendar },
-    { name: 'Timeline', href: '#timeline', icon: Calendar },
-    { name: 'Team', href: '#team', icon: Users },
-    { name: 'Location', href: '#location', icon: MapPin },
-    { name: 'Brochure', href: '#brochure', icon: FileText },
+    { name: "Home", href: "/", icon: Code },
+    { name: "Events", href: "#events", icon: Calendar },
+    { name: "Timeline", href: "#timeline", icon: Calendar },
+    { name: "Team", href: "#team", icon: Users },
+    { name: "Location", href: "#location", icon: MapPin },
+    { name: "Brochure", href: "#brochure", icon: FileText },
   ];
 
   const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      element?.scrollIntoView({ behavior: "smooth" });
       setIsOpen(false);
     }
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-      scrolled ? 'glass neon-glow' : 'bg-transparent'
-    }`}>
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        scrolled ? "glass neon-glow" : "bg-transparent"
+      }`}
+    >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -46,7 +48,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-accent/20 transition-all duration-300" />
             </div>
             <span className="text-xl font-bold text-foreground group-hover:neon-text transition-all duration-300">
-              CyberHack 2024
+              Xzeyotrix'25
             </span>
           </Link>
 

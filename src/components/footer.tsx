@@ -1,25 +1,46 @@
-import { Code, Mail, Phone, MapPin, Github, Twitter, Linkedin, Instagram } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import {
+  Code,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Events', href: '#events' },
-    { name: 'Timeline', href: '#timeline' },
-    { name: 'Register', href: '/register' }
+    { name: "Home", href: "/" },
+    { name: "Events", href: "#events" },
+    { name: "Timeline", href: "#timeline" },
+    { name: "Register", href: "/register" },
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/cyberhack2024', label: 'GitHub' },
-    { icon: Twitter, href: 'https://twitter.com/cyberhack2024', label: 'Twitter' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/cyberhack2024', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://instagram.com/cyberhack2024', label: 'Instagram' }
+    { icon: Github, href: "https://github.com/cyberhack2024", label: "GitHub" },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/cyberhack2024",
+      label: "Twitter",
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/company/cyberhack2024",
+      label: "LinkedIn",
+    },
+    {
+      icon: Instagram,
+      href: "https://instagram.com/cyberhack2024",
+      label: "Instagram",
+    },
   ];
 
   const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth' });
+      element?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -34,11 +55,14 @@ const Footer = () => {
                 <Code className="h-8 w-8 text-primary" />
                 <div className="absolute inset-0 bg-primary/20 blur-lg" />
               </div>
-              <span className="text-2xl font-bold text-foreground">CyberHack 2024</span>
+              <span className="text-2xl font-bold text-foreground">
+                Xzeyotrix'25
+              </span>
             </div>
             <p className="text-foreground/70 leading-relaxed">
-              The ultimate college hackathon experience bringing together brilliant minds 
-              to create innovative solutions and shape the future of technology.
+              The ultimate college hackathon experience bringing together
+              brilliant minds to create innovative solutions and shape the
+              future of technology.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
@@ -62,7 +86,7 @@ const Footer = () => {
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  {link.href.startsWith('#') ? (
+                  {link.href.startsWith("#") ? (
                     <button
                       onClick={() => scrollToSection(link.href)}
                       className="text-foreground/70 hover:text-primary transition-colors duration-300"
@@ -89,8 +113,8 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <Mail className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <p className="text-foreground/70">info@cyberhack2024.edu</p>
-                  <p className="text-foreground/70">support@cyberhack2024.edu</p>
+                  <p className="text-foreground/70">Xzeyotrix25@psr.edu.in</p>
+                  <p className="text-foreground/70">support@psr.edu.in</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">
@@ -104,9 +128,13 @@ const Footer = () => {
                 <MapPin className="h-5 w-5 text-primary mt-0.5" />
                 <div>
                   <p className="text-foreground/70">
-                    TechVerse Innovation Hub<br />
-                    123 Innovation Drive<br />
-                    Bangalore, Karnataka 560001
+                    P.S.R Engineering College
+                    <br />
+                    Sevalpatti, Sivakasi - 626140
+                    <br />
+                    Virudhunagar (Dist),
+                    <br />
+                    Tamil Nadu, India.
                   </p>
                 </div>
               </div>
@@ -117,7 +145,8 @@ const Footer = () => {
           <div className="space-y-6">
             <h3 className="text-xl font-bold text-foreground">Stay Updated</h3>
             <p className="text-foreground/70">
-              Subscribe to our newsletter for the latest updates and announcements.
+              Subscribe to our newsletter for the latest updates and
+              announcements.
             </p>
             <div className="space-y-3">
               <div className="glass rounded-lg p-1">
@@ -143,19 +172,29 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-foreground/60 text-sm">
-              © 2024 CyberHack. All rights reserved. Made with ❤️ by the organizing team.
+              © Xzeyotrix'25. All rights reserved. Made with ❤️ by the
+              organizing team.
             </div>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors duration-300">
+            {/* <div className="flex space-x-6 text-sm">
+              <a
+                href="#"
+                className="text-foreground/60 hover:text-primary transition-colors duration-300"
+              >
                 Privacy Policy
               </a>
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors duration-300">
+              <a
+                href="#"
+                className="text-foreground/60 hover:text-primary transition-colors duration-300"
+              >
                 Terms of Service
               </a>
-              <a href="#" className="text-foreground/60 hover:text-primary transition-colors duration-300">
+              <a
+                href="#"
+                className="text-foreground/60 hover:text-primary transition-colors duration-300"
+              >
                 Code of Conduct
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

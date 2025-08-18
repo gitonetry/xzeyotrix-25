@@ -1,55 +1,59 @@
-import { Mail, Phone, Linkedin, Github, Twitter } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Twitter } from "lucide-react";
 
 const TeamSection = () => {
   const coordinators = [
     {
-      name: "Dr. Sarah Johnson",
+      name: "Dr. Kavitha Mam",
       role: "Faculty Coordinator",
       department: "Computer Science",
       email: "sarah.johnson@college.edu",
       phone: "+91 98765 43210",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face",
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/sarahjohnson",
-        twitter: "https://twitter.com/sarahjohnson"
-      }
+        linkedin: "https://linkedin.com/in/name",
+        twitter: "https://twitter.com/name",
+      },
     },
     {
-      name: "Alex Chen",
+      name: "Prof. Madhu Mathi",
       role: "Student Coordinator",
-      department: "Information Technology",
+      department: "Computer Science",
       email: "alex.chen@student.college.edu",
       phone: "+91 98765 43211",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face",
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/alexchen",
-        github: "https://github.com/alexchen"
-      }
+        linkedin: "https://linkedin.com/in/name",
+        github: "https://github.com/name",
+      },
     },
     {
-      name: "Priya Sharma",
+      name: "name",
       role: "Event Manager",
-      department: "Computer Engineering",
+      department: "Computer Science",
       email: "priya.sharma@student.college.edu",
       phone: "+91 98765 43212",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face",
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/priyasharma",
-        twitter: "https://twitter.com/priyasharma"
-      }
+        linkedin: "https://linkedin.com/in/name",
+        twitter: "https://twitter.com/name",
+      },
     },
     {
-      name: "Michael Rodriguez",
+      name: "name",
       role: "Technical Lead",
-      department: "Software Engineering",
+      department: "Computer Science",
       email: "michael.r@student.college.edu",
       phone: "+91 98765 43213",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face",
+      image:
+        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
       social: {
-        linkedin: "https://linkedin.com/in/michaelrodriguez",
-        github: "https://github.com/michaelr"
-      }
-    }
+        linkedin: "https://linkedin.com/in/name",
+        github: "https://github.com/name",
+      },
+    },
   ];
 
   return (
@@ -60,13 +64,14 @@ const TeamSection = () => {
             Meet Our <span className="text-primary neon-text">Team</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Get to know the amazing coordinators who are making CyberHack 2024 possible
+            Get to know the amazing coordinators who are making Xzeyotrix'25
+            possible
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {coordinators.map((coordinator, index) => (
-            <div 
+            <div
               key={coordinator.name}
               className="glass glass-hover rounded-xl p-6 text-center group animate-slide-up"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -74,8 +79,8 @@ const TeamSection = () => {
               {/* Profile Image */}
               <div className="relative mb-6">
                 <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-primary/30 group-hover:border-primary/60 transition-all duration-300">
-                  <img 
-                    src={coordinator.image} 
+                  <img
+                    src={coordinator.image}
                     alt={coordinator.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -89,8 +94,12 @@ const TeamSection = () => {
                   <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                     {coordinator.name}
                   </h3>
-                  <p className="text-accent font-semibold">{coordinator.role}</p>
-                  <p className="text-foreground/60 text-sm">{coordinator.department}</p>
+                  <p className="text-accent font-semibold">
+                    {coordinator.role}
+                  </p>
+                  <p className="text-foreground/60 text-sm">
+                    {coordinator.department}
+                  </p>
                 </div>
 
                 {/* Contact Info */}
@@ -108,7 +117,7 @@ const TeamSection = () => {
                 {/* Social Links */}
                 <div className="flex justify-center space-x-3 pt-4">
                   {coordinator.social.linkedin && (
-                    <a 
+                    <a
                       href={coordinator.social.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -118,7 +127,7 @@ const TeamSection = () => {
                     </a>
                   )}
                   {coordinator.social.github && (
-                    <a 
+                    <a
                       href={coordinator.social.github}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -128,7 +137,7 @@ const TeamSection = () => {
                     </a>
                   )}
                   {coordinator.social.twitter && (
-                    <a 
+                    <a
                       href={coordinator.social.twitter}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -150,7 +159,8 @@ const TeamSection = () => {
               Have Questions?
             </h3>
             <p className="text-foreground/70 mb-6">
-              Feel free to reach out to any of our coordinators for more information about the event.
+              Feel free to reach out to any of our coordinators for more
+              information about the event.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-gradient-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg neon-glow">
