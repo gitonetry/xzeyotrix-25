@@ -7,7 +7,7 @@ export default defineConfig({
     host: "0.0.0.0",
     port: 5173,
     allowedHosts: [
-      "d3e09d3b8022.ngrok-free.app" // your ngrok domain
+      "b8e0ef662643.ngrok-free.app" // your ngrok domain
     ],
   },
   plugins: [react()],

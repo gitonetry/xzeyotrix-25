@@ -1,4 +1,4 @@
-import { Users, Code, Lightbulb, Trophy, Coffee, MapPin } from "lucide-react";
+import { Users, Code, Utensils, Trophy } from "lucide-react";
 
 const timeSlots = [
   "9:00",
@@ -22,39 +22,118 @@ const timelineEvents = [
   {
     title: "Inauguration",
     startTime: "9:00",
-    duration: 2, // 1hr (2 slots)
+    duration: 1.9,
     color: "#ef4444",
-    border: "border-red-500",
     icon: Users,
     row: 0,
   },
   {
-    title: "Technical Events",
+    title: "Technical Events 1",
     startTime: "10:00",
-    duration: 4, // 3hr (6 slots)
-    color: "#8b5cf6",
-    border: "border-purple-500",
+    duration: 3.9,
+    color: "#2563eb",
+    icon: Code,
+    row: 0,
+  },
+  {
+    title: "Technical Events 2",
+    startTime: "10:00",
+    duration: 3.9,
+    color: "#ff007f",
     icon: Code,
     row: 1,
   },
-  // ...add other events, making sure startTime matches a slot and duration is in slots
+  {
+    title: "Technical Events 3",
+    startTime: "10:00",
+    duration: 3.9,
+    color: "#00ffa3",
+    icon: Code,
+    row: 2,
+  },
+  {
+    title: "Technical Events 4",
+    startTime: "10:00",
+    duration: 3.9,
+    color: "#00e0ff",
+    icon: Code,
+    row: 3,
+  },
+  {
+    title: "Lunch",
+    startTime: "12:00",
+    duration: 1.9,
+    color: "#ffe100",
+    icon: Utensils,
+    row: 0,
+  },
+  {
+    title: "Non Technical Events",
+    startTime: "1:00",
+    duration: 3.5,
+    color: "#b967ff",
+    icon: Code,
+    row: 0,
+  },
+  {
+    title: "Non Technical Events",
+    startTime: "1:00",
+    duration: 3.5,
+    color: "#ff9900",
+    icon: Code,
+    row: 1,
+  },
+  {
+    title: "Non Technical Events",
+    startTime: "1:00",
+    duration: 3.5,
+    color: "#ff00ff",
+    icon: Code,
+    row: 2,
+  },
+  {
+    title: "Non Technical Events",
+    startTime: "1:00",
+    duration: 3.5,
+    color: "#2563eb",
+    icon: Code,
+    row: 3,
+  },
+  {
+    title: "Prize Distribution",
+    startTime: "3:00",
+    duration: 2,
+    color: "#0fb900",
+    icon: Trophy,
+    row: 0,
+  },
 ];
 
 const getSlotIndex = (startTime: string) => timeSlots.indexOf(startTime);
 
 const TimelineSection = () => {
-  // Each slot is the space between two grid lines
   const slotWidth = 100 / (timeSlots.length - 1);
 
   return (
-    <section id="timeline" className="py-10 relative">
+    <section id="timeline" className="py-20 relative">
       <div className="container mx-auto px-4">
+        {/* Title Section from OLD template */}
+        <div className="text-center mb-16 animate-fade-in">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            Event <span className="text-primary neon-text">Timeline</span>
+          </h2>
+          <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
+            A carefully planned schedule of exciting events and workshops
+          </p>
+        </div>
+
+        {/* Timeline Grid from UPDATED file */}
         <div className="glass rounded-2xl p-8 overflow-x-auto bg-background/5 backdrop-blur-sm border border-white/10">
           <div
             className="relative"
             style={{
-              minWidth: "1200px", // or any width that fits your timeline
-              width: "1200px", // fixed width for desktop, scrollable on mobile
+              minWidth: "1200px",
+              width: "1200px",
               margin: "0 auto",
             }}
           >
@@ -75,8 +154,9 @@ const TimelineSection = () => {
                 </span>
               ))}
             </div>
-            {/* Timeline Grid */}
-            <div className="relative" style={{ height: "520px" }}>
+
+            {/* Grid + Events */}
+            <div className="relative" style={{ height: "320px" }}>
               {/* Grid Lines */}
               <div className="absolute inset-0 pointer-events-none">
                 {timeSlots.map((_, idx) => (
@@ -89,29 +169,31 @@ const TimelineSection = () => {
                       height: "100%",
                       width: "0px",
                       borderLeft: "2px solid #a3a3a3",
-                      opacity: 0.18,
+                      opacity: 0.09,
                       zIndex: 1,
                     }}
                   />
                 ))}
               </div>
+
               {/* Event Blocks */}
               {timelineEvents.map((event, idx) => {
                 const left =
                   getSlotIndex(event.startTime) *
                   (100 / (timeSlots.length - 1));
-                const slotWidth = 100 / (timeSlots.length - 1);
                 return (
                   <div
                     key={idx}
-                    className={`absolute flex items-center px-4 py-3 rounded-lg bg-transparent ${event.border}`}
+                    className="absolute flex items-center px-4 py-3 rounded-lg"
                     style={{
                       left: `${left}%`,
-                      top: `${event.row * 52 + 24}px`,
+                      top: `${event.row * 62 + 24}px`,
                       width: `${event.duration * slotWidth}%`,
                       minWidth: "120px",
                       borderWidth: "2px",
-                      backgroundColor: "rgba(0,0,0,0.3)",
+                      borderStyle: "solid",
+                      borderColor: event.color,
+                      backgroundColor: `${event.color}23`,
                       zIndex: 2,
                     }}
                   >
@@ -123,6 +205,29 @@ const TimelineSection = () => {
                 );
               })}
             </div>
+          </div>
+        </div>
+
+        {/* Call to Action from OLD template */}
+        <div className="text-center mt-16">
+          <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">
+              Ready to Begin Your Journey?
+            </h3>
+            <p className="text-foreground/70 mb-6">
+              Join us for an unforgettable experience of innovation, learning,
+              and building amazing projects.
+            </p>
+            <button
+              className="bg-gradient-primary text-primary-foreground font-semibold px-8 py-3 rounded-lg neon-glow animate-glow-pulse"
+              onClick={() =>
+                document
+                  .querySelector("#events")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              View Events
+            </button>
           </div>
         </div>
       </div>
