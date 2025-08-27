@@ -56,7 +56,10 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:8080/api/registrations", formData);
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
+        formData
+      );
       toast({
         title: "Registration Successful!",
         description:
