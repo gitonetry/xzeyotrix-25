@@ -81,10 +81,29 @@ const Register = () => {
         transactionId: "",
         upiId: "",
       });
-    } catch (err) {
+    } catch (err: any) {
+      let errorMsg =
+        "Registration Failed! Please try again or contact support.";
+      if (
+        err.response &&
+        err.response.data &&
+        typeof err.response.data === "string"
+      ) {
+        const msg = err.response.data.toLowerCase();
+        if (msg.includes("email")) {
+          errorMsg =
+            "This email is already registered. Please use a different email.";
+        } else if (msg.includes("phone")) {
+          errorMsg =
+            "This phone number is already registered. Please use a different phone number.";
+        } else if (msg.includes("transaction")) {
+          errorMsg =
+            "This transaction ID is already used. Please use a unique transaction ID.";
+        }
+      }
       toast({
-        title: "Registration Failed!",
-        description: "Please try again or contact support.",
+        title: "Duplicate Entry!",
+        description: errorMsg,
         variant: "destructive",
       });
     }
