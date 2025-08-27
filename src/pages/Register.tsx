@@ -68,6 +68,7 @@ const Register = () => {
 
     try {
       // 1. Check Email
+      setLoadingMessage("Checking eMail...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(33);
       const checkRes = await axios.get(
@@ -82,9 +83,10 @@ const Register = () => {
             "This email is already registered. Please use a different email.",
           variant: "destructive",
         });
-        return;
+        return; // stops further checks
       }
 
+      // Check Phone
       setLoadingMessage("Checking Phone...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(66);
@@ -100,9 +102,10 @@ const Register = () => {
             "This phone number is already registered. Please use a different phone number.",
           variant: "destructive",
         });
-        return;
+        return; // stops further checks
       }
 
+      // Check Transaction ID
       setLoadingMessage("Checking Transaction ID...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(90);
