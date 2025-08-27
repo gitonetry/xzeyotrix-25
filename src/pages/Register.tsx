@@ -84,11 +84,7 @@ const Register = () => {
     } catch (err: any) {
       let errorMsg =
         "Registration Failed! Please try again or contact support.";
-      if (
-        err.response &&
-        err.response.data &&
-        typeof err.response.data === "string"
-      ) {
+      if (err.response && typeof err.response.data === "string") {
         const msg = err.response.data.toLowerCase();
         if (msg.includes("email")) {
           errorMsg =
@@ -99,6 +95,8 @@ const Register = () => {
         } else if (msg.includes("transaction")) {
           errorMsg =
             "This transaction ID is already used. Please use a unique transaction ID.";
+        } else if (msg.includes("duplicate")) {
+          errorMsg = "Duplicate entry detected. Please check your details.";
         }
       }
       toast({
