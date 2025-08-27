@@ -55,6 +55,51 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // 1. Pre-check for duplicates
+    try {
+      const checkRes = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        {
+          params: {
+            email: formData.email,
+            phone: formData.phone,
+            transactionId: formData.transactionId,
+          },
+        }
+      );
+      const { emailExists, phoneExists, transactionIdExists } = checkRes.data;
+      if (emailExists) {
+        toast({
+          title: "Duplicate Email!",
+          description:
+            "This email is already registered. Please use a different email.",
+          variant: "destructive",
+        });
+        return;
+      }
+      if (phoneExists) {
+        toast({
+          title: "Duplicate Phone!",
+          description:
+            "This phone number is already registered. Please use a different phone number.",
+          variant: "destructive",
+        });
+        return;
+      }
+      if (transactionIdExists) {
+        toast({
+          title: "Duplicate Transaction ID!",
+          description:
+            "This transaction ID is already used. Please use a unique transaction ID.",
+          variant: "destructive",
+        });
+        return;
+      }
+    } catch (err) {
+      // If check endpoint fails, fallback to backend validation on submit
+    }
+
+    // 2. Proceed with registration as before
     try {
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
