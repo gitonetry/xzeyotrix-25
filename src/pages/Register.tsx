@@ -40,6 +40,7 @@ const Register = () => {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState("");
+  const [progress, setProgress] = useState(0);
 
   const handleInputChange = (field: string, value: string) => {
     // Dismiss error toast if editing a unique field
@@ -62,18 +63,16 @@ const Register = () => {
     e.preventDefault();
 
     setLoading(true);
+    setProgress(0);
     setLoadingMessage("Checking eMail...");
 
     try {
       // 1. Check Email
-      await new Promise((res) => setTimeout(res, 400)); // for futuristic effect
+      await new Promise((res) => setTimeout(res, 400));
+      setProgress(33);
       const checkRes = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        {
-          params: {
-            email: formData.email,
-          },
-        }
+        { params: { email: formData.email } }
       );
       if (checkRes.data.emailExists) {
         setLoading(false);
@@ -88,13 +87,10 @@ const Register = () => {
 
       setLoadingMessage("Checking Phone...");
       await new Promise((res) => setTimeout(res, 400));
+      setProgress(66);
       const checkResPhone = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        {
-          params: {
-            phone: formData.phone,
-          },
-        }
+        { params: { phone: formData.phone } }
       );
       if (checkResPhone.data.phoneExists) {
         setLoading(false);
@@ -109,13 +105,10 @@ const Register = () => {
 
       setLoadingMessage("Checking Transaction ID...");
       await new Promise((res) => setTimeout(res, 400));
+      setProgress(90);
       const checkResTxn = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        {
-          params: {
-            transactionId: formData.transactionId,
-          },
-        }
+        { params: { transactionId: formData.transactionId } }
       );
       if (checkResTxn.data.transactionIdExists) {
         setLoading(false);
@@ -127,19 +120,16 @@ const Register = () => {
         });
         return;
       }
-    } catch (err) {
-      setLoading(false);
-      // fallback to backend validation on submit
-    }
 
-    setLoading(false);
-
-    // 2. Proceed with registration as before
-    try {
+      setProgress(100);
+      setLoadingMessage("Registering...");
+      await new Promise((res) => setTimeout(res, 300));
+      // 2. Proceed with registration as before
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
         formData
       );
+      setLoading(false);
       toast({
         title: "Registration Successful!",
         description:
@@ -162,6 +152,7 @@ const Register = () => {
         upiId: "",
       });
     } catch (err: any) {
+      setLoading(false);
       let errorMsg =
         "Registration Failed! Please try again or contact support.";
       if (err.response && typeof err.response.data === "string") {
@@ -201,7 +192,7 @@ const Register = () => {
             position: "fixed",
             zIndex: 9999,
             inset: 0,
-            background: "rgba(10,20,40,0.85)",
+            background: "rgba(10,20,40,0.92)",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -209,17 +200,45 @@ const Register = () => {
             backdropFilter: "blur(2px)",
           }}
         >
-          <div
-            style={{
-              border: "3px solid #0fffc3",
-              borderRadius: "50%",
-              width: 60,
-              height: 60,
-              marginBottom: 24,
-              borderTop: "3px solid transparent",
-              animation: "spin 1s linear infinite",
-            }}
-          />
+          <svg width="100" height="100" style={{ marginBottom: 24 }}>
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              stroke="#222"
+              strokeWidth="8"
+              fill="none"
+            />
+            <circle
+              cx="50"
+              cy="50"
+              r="42"
+              stroke="#0fffc3"
+              strokeWidth="8"
+              fill="none"
+              strokeDasharray={2 * Math.PI * 42}
+              strokeDashoffset={2 * Math.PI * 42 * (1 - progress / 100)}
+              style={{
+                transition: "stroke-dashoffset 0.4s cubic-bezier(.4,2,.6,1)",
+                filter: "drop-shadow(0 0 12px #0fffc3)",
+              }}
+              strokeLinecap="round"
+            />
+            <text
+              x="50"
+              y="56"
+              textAnchor="middle"
+              fontSize="2rem"
+              fill="#0fffc3"
+              fontFamily="monospace"
+              fontWeight="bold"
+              style={{
+                textShadow: "0 0 8px #0fffc3, 0 0 16px #0fffc3",
+              }}
+            >
+              {Math.round(progress)}%
+            </text>
+          </svg>
           <div
             style={{
               color: "#0fffc3",
@@ -232,14 +251,6 @@ const Register = () => {
           >
             {loadingMessage}
           </div>
-          <style>
-            {`
-              @keyframes spin {
-                0% { transform: rotate(0deg);}
-                100% { transform: rotate(360deg);}
-              }
-            `}
-          </style>
         </div>
       )}
       <Background3D />
