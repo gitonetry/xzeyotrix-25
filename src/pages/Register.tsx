@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import qrImage from "@/assets/flow-chart.png";
+import qrImage from "@/assets/upi.jpeg";
 import axios from "axios";
 
 const Register = () => {
@@ -86,6 +86,11 @@ const Register = () => {
       });
     }
   };
+
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen relative">
@@ -201,6 +206,7 @@ const Register = () => {
                   <Label htmlFor="year">Year of Study *</Label>
                   <Select
                     onValueChange={(value) => handleInputChange("year", value)}
+                    required
                   >
                     <SelectTrigger className="glass border-white/20">
                       <SelectValue placeholder="Select your year" />
@@ -443,7 +449,7 @@ const Register = () => {
                     <img
                       src={qrImage}
                       alt="UPI QR Code"
-                      className="h-40 w-40 object-contain rounded-lg border border-white/20 bg-white p-2"
+                      className="h-100 w-60 object-contain rounded-lg border border-white/20 bg-white p-2"
                     />
                   </div>
                 </div>

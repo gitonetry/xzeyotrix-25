@@ -1,4 +1,17 @@
-import { Users, Code, Utensils, Trophy } from "lucide-react";
+import {
+  Users,
+  Code,
+  Utensils,
+  Trophy,
+  Presentation,
+  Lightbulb,
+  Speech,
+  Wallpaper,
+  Unplug,
+  Clapperboard,
+  Paintbrush,
+  Brain,
+} from "lucide-react";
 
 const timeSlots = [
   "9:00",
@@ -28,35 +41,35 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "Technical Events 1",
+    title: "Paper Presentation",
     startTime: "10:00",
     duration: 3.9,
-    color: "#2563eb",
-    icon: Code,
+    color: "#4680ffff",
+    icon: Presentation,
     row: 0,
   },
   {
-    title: "Technical Events 2",
+    title: "Tech Quiz",
     startTime: "10:00",
     duration: 3.9,
     color: "#ff007f",
-    icon: Code,
+    icon: Lightbulb,
     row: 1,
   },
   {
-    title: "Technical Events 3",
+    title: "Tech Debates",
     startTime: "10:00",
     duration: 3.9,
     color: "#00ffa3",
-    icon: Code,
+    icon: Speech,
     row: 2,
   },
   {
-    title: "Technical Events 4",
+    title: "UI / UX Design Challenge",
     startTime: "10:00",
     duration: 3.9,
     color: "#00e0ff",
-    icon: Code,
+    icon: Wallpaper,
     row: 3,
   },
   {
@@ -68,35 +81,35 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "Non Technical Events",
+    title: "Connections",
     startTime: "1:00",
     duration: 3.5,
     color: "#b967ff",
-    icon: Code,
+    icon: Unplug,
     row: 0,
   },
   {
-    title: "Non Technical Events",
+    title: "AdZap",
     startTime: "1:00",
     duration: 3.5,
     color: "#ff9900",
-    icon: Code,
+    icon: Clapperboard,
     row: 1,
   },
   {
-    title: "Non Technical Events",
+    title: "Tech Pictionary",
     startTime: "1:00",
     duration: 3.5,
     color: "#ff00ff",
-    icon: Code,
+    icon: Paintbrush,
     row: 2,
   },
   {
-    title: "Non Technical Events",
+    title: "Tagline Twist",
     startTime: "1:00",
     duration: 3.5,
-    color: "#2563eb",
-    icon: Code,
+    color: "#a3ff12",
+    icon: Brain,
     row: 3,
   },
   {
@@ -197,7 +210,10 @@ const TimelineSection = () => {
                       zIndex: 2,
                     }}
                   >
-                    <event.icon className="h-6 w-6 mr-3 text-white opacity-80" />
+                    <event.icon
+                      className="h-6 w-6 mr-3 opacity-80"
+                      style={{ color: event.color }}
+                    />
                     <span className="text-white font-semibold text-base truncate">
                       {event.title}
                     </span>

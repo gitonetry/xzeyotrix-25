@@ -3,6 +3,7 @@ import {
   Camera,
   ChevronDown,
   ChevronUp,
+  Clapperboard,
   Lightbulb,
   Link,
   Palette,
@@ -77,7 +78,7 @@ const EventsSection = () => {
     {
       id: "design-thinking",
       title: "AdZap",
-      icon: Camera,
+      icon: Clapperboard,
       shortDesc: "Create instant ads for quirky, imaginary products",
       fullDesc:
         "Teams are given quirky or imaginary products and must create spontaneous, humorous advertisements. Creativity and humor are key. Participants can use acting, slogans, or props. Judges assess originality, wit, and audience engagement. A fun-filled event that blends drama and marketing skills",
