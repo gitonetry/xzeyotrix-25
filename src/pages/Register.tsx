@@ -38,6 +38,8 @@ const Register = () => {
   });
 
   const imageInputRef = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
 
   const handleInputChange = (field: string, value: string) => {
     // Dismiss error toast if editing a unique field
@@ -59,20 +61,22 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Pre-check for duplicates
+    setLoading(true);
+    setLoadingMessage("Checking eMail...");
+
     try {
+      // 1. Check Email
+      await new Promise((res) => setTimeout(res, 400)); // for futuristic effect
       const checkRes = await axios.get(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
         {
           params: {
             email: formData.email,
-            phone: formData.phone,
-            transactionId: formData.transactionId,
           },
         }
       );
-      const { emailExists, phoneExists, transactionIdExists } = checkRes.data;
-      if (emailExists) {
+      if (checkRes.data.emailExists) {
+        setLoading(false);
         toast({
           title: "Duplicate Email!",
           description:
@@ -81,7 +85,19 @@ const Register = () => {
         });
         return;
       }
-      if (phoneExists) {
+
+      setLoadingMessage("Checking Phone...");
+      await new Promise((res) => setTimeout(res, 400));
+      const checkResPhone = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        {
+          params: {
+            phone: formData.phone,
+          },
+        }
+      );
+      if (checkResPhone.data.phoneExists) {
+        setLoading(false);
         toast({
           title: "Duplicate Phone!",
           description:
@@ -90,7 +106,19 @@ const Register = () => {
         });
         return;
       }
-      if (transactionIdExists) {
+
+      setLoadingMessage("Checking Transaction ID...");
+      await new Promise((res) => setTimeout(res, 400));
+      const checkResTxn = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        {
+          params: {
+            transactionId: formData.transactionId,
+          },
+        }
+      );
+      if (checkResTxn.data.transactionIdExists) {
+        setLoading(false);
         toast({
           title: "Duplicate Transaction ID!",
           description:
@@ -100,8 +128,11 @@ const Register = () => {
         return;
       }
     } catch (err) {
-      // If check endpoint fails, fallback to backend validation on submit
+      setLoading(false);
+      // fallback to backend validation on submit
     }
+
+    setLoading(false);
 
     // 2. Proceed with registration as before
     try {
@@ -163,6 +194,54 @@ const Register = () => {
 
   return (
     <div className="min-h-screen relative">
+      {/* Futuristic Loading Overlay */}
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            zIndex: 9999,
+            inset: 0,
+            background: "rgba(10,20,40,0.85)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            backdropFilter: "blur(2px)",
+          }}
+        >
+          <div
+            style={{
+              border: "3px solid #0fffc3",
+              borderRadius: "50%",
+              width: 60,
+              height: 60,
+              marginBottom: 24,
+              borderTop: "3px solid transparent",
+              animation: "spin 1s linear infinite",
+            }}
+          />
+          <div
+            style={{
+              color: "#0fffc3",
+              fontSize: 22,
+              fontWeight: 600,
+              letterSpacing: 1,
+              textShadow: "0 0 8px #0fffc3, 0 0 16px #0fffc3",
+              fontFamily: "monospace",
+            }}
+          >
+            {loadingMessage}
+          </div>
+          <style>
+            {`
+              @keyframes spin {
+                0% { transform: rotate(0deg);}
+                100% { transform: rotate(360deg);}
+              }
+            `}
+          </style>
+        </div>
+      )}
       <Background3D />
       <div className="container mx-auto px-4 py-20">
         {/* Header */}
