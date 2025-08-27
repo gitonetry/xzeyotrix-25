@@ -19,7 +19,7 @@ import qrImage from "@/assets/upi.jpeg";
 import axios from "axios";
 
 const Register = () => {
-  const { toast } = useToast();
+  const { toast, dismiss } = useToast(); // add dismiss
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -40,6 +40,10 @@ const Register = () => {
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   const handleInputChange = (field: string, value: string) => {
+    // Dismiss error toast if editing a unique field
+    if (["email", "phone", "transactionId"].includes(field)) {
+      dismiss(); // This will close all open toasts
+    }
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
