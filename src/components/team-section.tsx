@@ -8,7 +8,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "rc.balasubramanian@psr.edu.in",
       phone: "+91 73730 87080",
-      image: "https://psr.irins.org/profile_images/2611481.JPG",
+      image: "/src/assets/balasubrmanian.JPG",
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -20,7 +20,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "palanikumar@psr.edu.in",
       phone: "+91 98659 06165",
-      image: "https://psr.irins.org/profile_images/299120.jpg",
+      image: "/src/assets/palanikumar.JPG",
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -32,7 +32,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "ramathilagam@psr.edu.in",
       phone: "+91 99424 17425",
-      image: "https://psr.irins.org/profile_images/261015.JPG",
+      image: "/src/assets/ramathilagam.JPG",
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
