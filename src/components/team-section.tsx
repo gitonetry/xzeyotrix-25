@@ -3,55 +3,51 @@ import { Mail, Phone, Linkedin, Github, Twitter } from "lucide-react";
 const TeamSection = () => {
   const coordinators = [
     {
-      name: "Dr. Kavitha Mam",
-      role: "Faculty Coordinator",
+      name: "Dr. Balasubrmanian",
+      role: "Department HOD",
       department: "Computer Science",
-      email: "sarah.johnson@college.edu",
-      phone: "+91 98765 43210",
-      image:
-        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
+      email: "rc.balasubramanian@psr.edu.in",
+      phone: "+91 73730 87080",
+      image: "https://psr.irins.org/profile_images/2611481.JPG",
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
       },
     },
     {
-      name: "Prof. Madhu Mathi",
-      role: "Student Coordinator",
+      name: "Dr. R. Palanikumar",
+      role: "Associate Professor",
       department: "Computer Science",
-      email: "alex.chen@student.college.edu",
-      phone: "+91 98765 43211",
-      image:
-        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
-      social: {
-        linkedin: "https://linkedin.com/in/name",
-        github: "https://github.com/name",
-      },
-    },
-    {
-      name: "name",
-      role: "Event Manager",
-      department: "Computer Science",
-      email: "priya.sharma@student.college.edu",
-      phone: "+91 98765 43212",
-      image:
-        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
+      email: "palanikumar@psr.edu.in",
+      phone: "+91 98659 06165",
+      image: "https://psr.irins.org/profile_images/299120.jpg",
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
       },
     },
     {
-      name: "name",
-      role: "Technical Lead",
+      name: "Dr. Ramathilagam",
+      role: "Professor",
       department: "Computer Science",
-      email: "michael.r@student.college.edu",
-      phone: "+91 98765 43213",
-      image:
-        "https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small_2x/profile-icon-design-free-vector.jpg",
+      email: "ramathilagam@psr.edu.in",
+      phone: "+91 99424 17425",
+      image: "https://psr.irins.org/profile_images/261015.JPG",
       social: {
         linkedin: "https://linkedin.com/in/name",
-        github: "https://github.com/name",
+        twitter: "https://twitter.com/name",
+      },
+    },
+    {
+      name: "Dr. Kavitha",
+      role: "Associate Professor",
+      department: "Computer Science",
+      email: "pkavitha@psr.edu.in",
+      phone: "+91 96000 83856",
+      image: "https://psr.irins.org/profile_images/303942.png",
+      social: {
+        linkedin: "https://linkedin.com/in/name",
+        twitter: "https://twitter.com/name",
       },
     },
   ];
@@ -124,16 +120,6 @@ const TeamSection = () => {
                       className="glass-hover p-2 rounded-lg text-primary hover:text-accent transition-colors duration-300"
                     >
                       <Linkedin className="h-5 w-5" />
-                    </a>
-                  )}
-                  {coordinator.social.github && (
-                    <a
-                      href={coordinator.social.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="glass-hover p-2 rounded-lg text-primary hover:text-accent transition-colors duration-300"
-                    >
-                      <Github className="h-5 w-5" />
                     </a>
                   )}
                   {coordinator.social.twitter && (

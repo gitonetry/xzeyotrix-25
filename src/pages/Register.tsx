@@ -136,7 +136,7 @@ const Register = () => {
       toast({
         title: "Registration Successful!",
         description:
-          "Welcome to CyberHack 2024. Check your email for confirmation details.",
+          "Welcome to Xzeyotrix'25. Check your email for confirmation details.",
       });
       setFormData({
         firstName: "",

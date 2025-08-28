@@ -94,7 +94,7 @@ const HeroSection = () => {
               {Object.entries(timeLeft).map(([unit, value]) => (
                 <div key={unit} className="text-center">
                   <div className="glass-hover rounded-lg p-4 neon-glow">
-                    <div className="text-3xl md:text-4xl font-bold text-primary">
+                    <div className="text-xl md:text-4xl font-bold text-primary">
                       {value.toString().padStart(2, "0")}
                     </div>
                     <div className="text-sm uppercase tracking-wide text-foreground/60">
