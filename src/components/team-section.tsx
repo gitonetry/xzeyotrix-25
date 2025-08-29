@@ -1,4 +1,8 @@
 import { Mail, Phone, Linkedin, Github, Twitter } from "lucide-react";
+import balasubrmanianImg from "@/src/assets/balasubramanian.jpg";
+import palanikumarImg from "@/assets/palanikumar.jpg";
+import ramathilagamImg from "@/src/assets/ramathilagam.jpg";
+import kavithaImg from "@/assets/kavitha.png";
 
 const TeamSection = () => {
   const coordinators = [
@@ -8,7 +12,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "rc.balasubramanian@psr.edu.in",
       phone: "+91 73730 87080",
-      image: "/src/assets/balasubrmanian.JPG",
+      image: balasubrmanianImg,
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -20,7 +24,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "palanikumar@psr.edu.in",
       phone: "+91 98659 06165",
-      image: "/src/assets/palanikumar.JPG",
+      image: palanikumarImg,
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -32,7 +36,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "ramathilagam@psr.edu.in",
       phone: "+91 99424 17425",
-      image: "/src/assets/ramathilagam.JPG",
+      image: ramathilagamImg,
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -44,7 +48,7 @@ const TeamSection = () => {
       department: "Computer Science",
       email: "pkavitha@psr.edu.in",
       phone: "+91 96000 83856",
-      image: "https://psr.irins.org/profile_images/303942.png",
+      image: kavithaImg,
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
