@@ -8,8 +8,8 @@ const HeroSection = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
-    minutes: 0,
-    seconds: 0,
+    min: 0,
+    sec: 0,
   });
 
   // Countdown to hackathon date (Sep 26, 2025)
@@ -26,8 +26,8 @@ const HeroSection = () => {
           hours: Math.floor(
             (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
           ),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
+          min: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          sec: Math.floor((distance % (1000 * 60)) / 1000),
         });
       }
     }, 1000);
