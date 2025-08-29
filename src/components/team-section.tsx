@@ -1,7 +1,7 @@
 import { Mail, Phone, Linkedin, Github, Twitter } from "lucide-react";
-import balasubrmanianImg from "@/src/assets/balasubramanian.jpg";
+import balasubrmanianImg from "@/assets/balasubrmanian.png";
 import palanikumarImg from "@/assets/palanikumar.jpg";
-import ramathilagamImg from "@/src/assets/ramathilagam.jpg";
+import ramathilagamImg from "@/assets/ramathilagam.png";
 import kavithaImg from "@/assets/kavitha.png";
 
 const TeamSection = () => {
