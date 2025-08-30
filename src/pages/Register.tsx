@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { ArrowLeft, User, GraduationCap, CalendarRange } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,6 +19,7 @@ import qrImage from "@/assets/upi.jpeg";
 import axios from "axios";
 
 const Register = () => {
+  const navigate = useNavigate();
   const { toast, dismiss } = useToast(); // add dismiss
   const [formData, setFormData] = useState({
     firstName: "",
@@ -133,11 +134,6 @@ const Register = () => {
         formData
       );
       setLoading(false);
-      toast({
-        title: "Registration Successful!",
-        description:
-          "Welcome to Xzeyotrix'25. Check your email for confirmation details.",
-      });
       setFormData({
         firstName: "",
         lastName: "",
@@ -154,6 +150,7 @@ const Register = () => {
         transactionId: "",
         upiId: "",
       });
+      navigate("/success");
     } catch (err: any) {
       setLoading(false);
       let errorMsg =
