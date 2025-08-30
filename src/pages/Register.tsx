@@ -154,7 +154,7 @@ const Register = () => {
     } catch (err: any) {
       setLoading(false);
       let errorMsg =
-        "Registration Failed! Please try again or contact support.";
+        "Registration Failed! Please try again in Few Minutes or contact support.";
       if (err.response && typeof err.response.data === "string") {
         const msg = err.response.data.toLowerCase();
         if (msg.includes("email")) {
@@ -171,7 +171,7 @@ const Register = () => {
         }
       }
       toast({
-        title: "Duplicate Entry!",
+        title: "Server Busy!",
         description: errorMsg,
         variant: "destructive",
       });
