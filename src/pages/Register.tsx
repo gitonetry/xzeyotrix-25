@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { ArrowLeft, User, GraduationCap, CalendarRange } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import SuccessModal from "@/components/ui/SuccessModal";
 import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -20,6 +21,7 @@ import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [showSuccess, setShowSuccess] = useState(false);
   const { toast, dismiss } = useToast(); // add dismiss
   const [formData, setFormData] = useState({
     firstName: "",
@@ -150,7 +152,7 @@ const Register = () => {
         transactionId: "",
         upiId: "",
       });
-      navigate("/success");
+      setShowSuccess(true);
     } catch (err: any) {
       setLoading(false);
       let errorMsg =
@@ -185,6 +187,13 @@ const Register = () => {
 
   return (
     <div className="min-h-screen relative">
+      <SuccessModal
+        open={showSuccess}
+        onClose={() => {
+          setShowSuccess(false);
+          navigate("/");
+        }}
+      />
       {/* Futuristic Loading Overlay */}
       {loading && (
         <div
