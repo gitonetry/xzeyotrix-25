@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import qrImage from "@/assets/upi.jpeg";
 import axios from "axios";
-import { supabase } from "@/supabaseClient";
+// import { supabase } from "@/supabaseClient";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -126,24 +126,17 @@ const Register = () => {
         return;
       }
 
-      // --- Upload image to Supabase if selected ---
+      // --- Upload image via backend if selected ---
       let screenshotUrl = "";
       if (selectedFile) {
-        const fileName = `${Date.now()}_${selectedFile.name}`;
-        const { data, error } = await supabase.storage
-          .from("payments") // your bucket name
-          .upload(fileName, selectedFile);
-
-        if (error) {
-          throw new Error("Screenshot upload failed: " + error.message);
-        }
-
-        // Get public URL
-        const { data: publicUrlData } = supabase.storage
-          .from("payments")
-          .getPublicUrl(fileName);
-
-        screenshotUrl = publicUrlData.publicUrl;
+        const formDataFile = new FormData();
+        formDataFile.append("file", selectedFile);
+        const uploadRes = await axios.post(
+          `${import.meta.env.VITE_BACKEND_URL}/api/files/upload`,
+          formDataFile,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+        screenshotUrl = uploadRes.data;
       }
 
       setProgress(100);
