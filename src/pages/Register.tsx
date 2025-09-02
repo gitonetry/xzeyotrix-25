@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import qrImage from "@/assets/upi.jpeg";
 import axios from "axios";
+import { supabase } from "@/supabaseClient";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ const Register = () => {
     transactionId: "",
     upiId: "",
   });
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
@@ -55,10 +57,7 @@ const Register = () => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFormData((prev) => ({
-        ...prev,
-        image: e.target.files![0],
-      }));
+      setSelectedFile(e.target.files[0]);
     }
   };
 
@@ -119,22 +118,47 @@ const Register = () => {
       if (checkResTxn.data.transactionIdExists) {
         setLoading(false);
         toast({
-          title: "Duplicate Transaction ID!",
+          title: "Invalid Transaction ID!",
           description:
-            "This transaction ID is already used. Please use a unique transaction ID.",
+            "Check the transaction ID properly. Please enter a valid transaction ID. No Duplicates are allowed.",
           variant: "destructive",
         });
         return;
       }
 
+      // --- Upload image to Supabase if selected ---
+      let screenshotUrl = "";
+      if (selectedFile) {
+        const fileName = `${Date.now()}_${selectedFile.name}`;
+        const { data, error } = await supabase.storage
+          .from("payments") // your bucket name
+          .upload(fileName, selectedFile);
+
+        if (error) {
+          throw new Error("Screenshot upload failed: " + error.message);
+        }
+
+        // Get public URL
+        const { data: publicUrlData } = supabase.storage
+          .from("payments")
+          .getPublicUrl(fileName);
+
+        screenshotUrl = publicUrlData.publicUrl;
+      }
+
       setProgress(100);
       setLoadingMessage("Registering...");
       await new Promise((res) => setTimeout(res, 300));
-      // 2. Proceed with registration as before
+
+      // --- Send form data with screenshot URL ---
       await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
-        formData
+        {
+          ...formData,
+          paymentScreenshot: screenshotUrl, // add new field
+        }
       );
+
       setLoading(false);
       setFormData({
         firstName: "",
@@ -152,6 +176,7 @@ const Register = () => {
         transactionId: "",
         upiId: "",
       });
+      setSelectedFile(null);
       setShowSuccess(true);
     } catch (err: any) {
       setLoading(false);
@@ -620,6 +645,25 @@ const Register = () => {
                       className="h-100 w-60 object-contain rounded-lg border border-white/20 bg-white p-2"
                     />
                   </div>
+                </div>
+
+                {/* Image Upload */}
+                <div className="space-y-2">
+                  <Label htmlFor="imageUpload">Upload Payment Screenshot</Label>
+                  <Input
+                    id="imageUpload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="glass border-white/20 focus:border-primary"
+                  />
+                  {selectedFile && (
+                    <div className="mt-2">
+                      <span className="text-xs text-foreground/70">
+                        Selected: {selectedFile.name}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Transaction ID */}
