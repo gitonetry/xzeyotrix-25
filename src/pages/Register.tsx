@@ -68,6 +68,7 @@ const Register = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const { toast, dismiss } = useToast(); // add dismiss
   const [formData, setFormData] = useState({
+    id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -109,17 +110,60 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Basic validation
+    if (!selectedFile) {
+      toast({
+        title: "Upload Required!",
+        description: "Please upload your payment screenshot before submitting.",
+        variant: "destructive",
+      });
+      return;
+    }
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.phone ||
+      !formData.college ||
+      !formData.year ||
+      !formData.branch ||
+      !formData.location ||
+      !formData.technicalEvent ||
+      !formData.nonTechnicalEvent ||
+      !formData.foodPreference ||
+      !formData.transactionId ||
+      !formData.upiId
+    ) {
+      toast({
+        title: "Missing Fields!",
+        description: "Please fill all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    setProgress(0);
+    setLoadingMessage("Uploading payment screenshot...");
     try {
       // Step 1: Upload file to Supabase
-      const filePath = `payments/${Date.now()}_${selectedFile!.name}`;
+      const filePath = `payments/${Date.now()}_${selectedFile.name}`;
       const { error } = await supabase.storage
         .from("nexnival25")
-        .upload(filePath, selectedFile!, { upsert: true });
+        .upload(filePath, selectedFile, { upsert: true });
 
       if (error) {
-        alert("File upload failed!");
+        setLoading(false);
+        toast({
+          title: "File upload failed!",
+          description: error.message,
+          variant: "destructive",
+        });
         return;
       }
+
+      setProgress(50);
+      setLoadingMessage("Preparing registration...");
 
       // Step 2: Get public URL
       const { data: urlData } = supabase.storage
@@ -128,19 +172,64 @@ const Register = () => {
 
       const publicUrl = urlData?.publicUrl;
 
-      // Step 3: Post registration data to backend
-      await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/registrations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          paymentScreenshot: publicUrl, // ✅ include Supabase URL
-        }),
-      });
+      setProgress(80);
+      setLoadingMessage("Submitting registration...");
 
-      alert("Registration successful!");
-    } catch (err) {
-      alert("Registration failed!");
+      // Step 3: Post registration data to backend (do NOT send id)
+      const payload = { ...formData, paymentScreenshot: publicUrl };
+      // Remove id if present
+      delete payload.id;
+
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (!response.ok) {
+        setLoading(false);
+        toast({
+          title: "Registration failed!",
+          description: "Server error. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setProgress(100);
+      setLoadingMessage("Success!");
+      setTimeout(() => {
+        setLoading(false);
+        setShowSuccess(true);
+        setFormData({
+          id: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          college: "",
+          year: "",
+          branch: "",
+          location: "",
+          technicalEvent: "",
+          nonTechnicalEvent: "",
+          teamMembers: "",
+          foodPreference: "",
+          transactionId: "",
+          upiId: "",
+        });
+        setSelectedFile(null);
+      }, 500);
+    } catch (err: any) {
+      setLoading(false);
+      toast({
+        title: "Registration failed!",
+        description: err?.message || "Unknown error.",
+        variant: "destructive",
+      });
     }
   };
 
