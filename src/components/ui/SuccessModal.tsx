@@ -95,8 +95,10 @@ const SuccessModal: React.FC<SuccessModalProps> = ({ open, onClose }) => {
           boxShadow: "0 8px 32px rgba(0,0,0,0.13), 0 1.5px 0 #fff7",
           padding: "2.5rem 2.2rem 2.2rem 2.2rem",
           textAlign: "center",
-          minWidth: 340,
-          maxWidth: "90vw",
+          minWidth: 0, // responsive for mobile
+          width: "90vw", // responsive width
+          maxWidth: 400, // max width for desktop
+          boxSizing: "border-box",
           animation: "popIn 0.5s cubic-bezier(.4,2,.6,1)",
           border: "1.5px solid #f3f4f6",
           zIndex: 10002,
