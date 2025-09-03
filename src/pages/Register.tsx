@@ -17,8 +17,51 @@ import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import qrImage from "@/assets/ragland-upi.jpeg";
-import axios from "axios";
-import { supabase } from "@/supabaseClient";
+
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL!,
+  import.meta.env.VITE_SUPABASE_ANON_KEY!
+);
+
+async function registerUser(formData: any, file: File) {
+  // 1. Upload screenshot to Supabase
+  const fileName = `${Date.now()}-${file.name}`;
+  const { error } = await supabase.storage
+    .from(import.meta.env.VITE_SUPABASE_BUCKET!)
+    .upload(fileName, file);
+
+  if (error) {
+    throw new Error("Screenshot upload failed: " + error.message);
+  }
+
+  // 2. Get public URL
+  const { data: publicUrlData } = supabase.storage
+    .from(import.meta.env.VITE_SUPABASE_BUCKET!)
+    .getPublicUrl(fileName);
+
+  const paymentScreenshot = publicUrlData.publicUrl;
+
+  // 3. Send registration + screenshot URL to backend
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...formData,
+        paymentScreenshot, // ✅ include Supabase URL
+      }),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to save registration");
+  }
+
+  return await response.json();
+}
 
 const Register = () => {
   const navigate = useNavigate();
@@ -57,37 +100,9 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setSelectedFile(file);
-      setUploading(true);
-      // Upload to Supabase
-      const fileExt = file.name.split(".").pop();
-      const fileName = `payment_${Date.now()}.${fileExt}`;
-      const { data, error } = await supabase.storage
-        .from("nexnival25") // bucket name from your env
-        .upload(`payment_screenshots/${fileName}`, file, { upsert: true });
-
-      if (error) {
-        console.error("Supabase upload error:", error);
-        toast({
-          title: "Image Upload Failed!",
-          description:
-            error.message || "Could not upload payment screenshot. Try again.",
-          variant: "destructive",
-        });
-        setUploading(false);
-        return;
-      }
-
-      // Get public URL
-      const { data: publicUrlData } = supabase.storage
-        .from("nexnival25")
-        .getPublicUrl(`payment_screenshots/${fileName}`);
-
-      setPaymentScreenshotUrl(publicUrlData.publicUrl);
-      setUploading(false);
+      setSelectedFile(e.target.files[0]);
     }
   };
 
@@ -103,11 +118,13 @@ const Register = () => {
       setLoadingMessage("Checking eMail...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(33);
-      const checkRes = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        { params: { email: formData.email } }
+      const checkRes = await fetch(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/registrations/check?email=${encodeURIComponent(formData.email)}`
       );
-      if (checkRes.data.emailExists) {
+      const checkResData = await checkRes.json();
+      if (checkResData.emailExists) {
         setLoading(false);
         toast({
           title: "Duplicate Email!",
@@ -115,18 +132,20 @@ const Register = () => {
             "This email is already registered. Please use a different email.",
           variant: "destructive",
         });
-        return; // stops further checks
+        return;
       }
 
       // Check Phone
       setLoadingMessage("Checking Phone...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(66);
-      const checkResPhone = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        { params: { phone: formData.phone } }
+      const checkResPhone = await fetch(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/registrations/check?phone=${encodeURIComponent(formData.phone)}`
       );
-      if (checkResPhone.data.phoneExists) {
+      const checkResPhoneData = await checkResPhone.json();
+      if (checkResPhoneData.phoneExists) {
         setLoading(false);
         toast({
           title: "Duplicate Phone!",
@@ -134,18 +153,22 @@ const Register = () => {
             "This phone number is already registered. Please use a different phone number.",
           variant: "destructive",
         });
-        return; // stops further checks
+        return;
       }
 
       // Check Transaction ID
       setLoadingMessage("Checking Transaction ID...");
       await new Promise((res) => setTimeout(res, 400));
       setProgress(90);
-      const checkResTxn = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
-        { params: { transactionId: formData.transactionId } }
+      const checkResTxn = await fetch(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/registrations/check?transactionId=${encodeURIComponent(
+          formData.transactionId
+        )}`
       );
-      if (checkResTxn.data.transactionIdExists) {
+      const checkResTxnData = await checkResTxn.json();
+      if (checkResTxnData.transactionIdExists) {
         setLoading(false);
         toast({
           title: "Invalid Transaction ID!",
@@ -156,8 +179,8 @@ const Register = () => {
         return;
       }
 
-      // --- Ensure screenshot uploaded ---
-      if (!paymentScreenshotUrl) {
+      // --- Ensure screenshot selected ---
+      if (!selectedFile) {
         setLoading(false);
         toast({
           title: "Upload Required!",
@@ -172,14 +195,8 @@ const Register = () => {
       setLoadingMessage("Registering...");
       await new Promise((res) => setTimeout(res, 300));
 
-      // --- Send form data with screenshot URL ---
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
-        {
-          ...formData,
-          paymentScreenshot: paymentScreenshotUrl, // add new field
-        }
-      );
+      // --- Upload screenshot and register user ---
+      await registerUser(formData, selectedFile);
 
       setLoading(false);
       setFormData({
@@ -199,27 +216,12 @@ const Register = () => {
         upiId: "",
       });
       setSelectedFile(null);
-      setPaymentScreenshotUrl("");
       setShowSuccess(true);
     } catch (err: any) {
       setLoading(false);
       let errorMsg =
+        err?.message ||
         "Registration Failed! Please try again in Few Minutes or contact support.";
-      if (err.response && typeof err.response.data === "string") {
-        const msg = err.response.data.toLowerCase();
-        if (msg.includes("email")) {
-          errorMsg =
-            "This email is already registered. Please use a different email.";
-        } else if (msg.includes("phone")) {
-          errorMsg =
-            "This phone number is already registered. Please use a different phone number.";
-        } else if (msg.includes("transaction")) {
-          errorMsg =
-            "This transaction ID is already used. Please use a unique transaction ID.";
-        } else if (msg.includes("duplicate")) {
-          errorMsg = "Duplicate entry detected. Please check your details.";
-        }
-      }
       toast({
         title: "Server Busy!",
         description: errorMsg,
@@ -684,10 +686,9 @@ const Register = () => {
                     className="glass border-white/20 focus:border-primary"
                     required
                   />
-                  {uploading && <p className="text-primary">Uploading...</p>}
-                  {paymentScreenshotUrl && (
+                  {selectedFile && (
                     <img
-                      src={paymentScreenshotUrl}
+                      src={URL.createObjectURL(selectedFile)}
                       alt="Payment Screenshot Preview"
                       style={{ maxWidth: 200, marginTop: 8, borderRadius: 8 }}
                     />
