@@ -17,6 +17,7 @@ import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import qrImage from "@/assets/ragland-upi.jpeg";
+import axios from "axios";
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -110,124 +111,134 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
-    if (!selectedFile) {
-      toast({
-        title: "Upload Required!",
-        description: "Please upload your payment screenshot before submitting.",
-        variant: "destructive",
-      });
-      return;
-    }
-    if (
-      !formData.firstName ||
-      !formData.lastName ||
-      !formData.email ||
-      !formData.phone ||
-      !formData.college ||
-      !formData.year ||
-      !formData.branch ||
-      !formData.location ||
-      !formData.technicalEvent ||
-      !formData.nonTechnicalEvent ||
-      !formData.foodPreference ||
-      !formData.transactionId ||
-      !formData.upiId
-    ) {
-      toast({
-        title: "Missing Fields!",
-        description: "Please fill all required fields.",
-        variant: "destructive",
-      });
-      return;
-    }
-
     setLoading(true);
     setProgress(0);
-    setLoadingMessage("Uploading payment screenshot...");
-    try {
-      // Step 1: Upload file to Supabase
-      const filePath = `payments/${Date.now()}_${selectedFile.name}`;
-      const { error } = await supabase.storage
-        .from("nexnival25")
-        .upload(filePath, selectedFile, { upsert: true });
+    setLoadingMessage("Checking eMail...");
 
-      if (error) {
+    try {
+      // 1. Check Email
+      setLoadingMessage("Checking eMail...");
+      await new Promise((res) => setTimeout(res, 400));
+      setProgress(33);
+      const checkRes = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        { params: { email: formData.email } }
+      );
+      if (checkRes.data.emailExists) {
         setLoading(false);
         toast({
-          title: "File upload failed!",
-          description: error.message,
+          title: "Duplicate Email!",
+          description:
+            "This email is already registered. Please use a different email.",
           variant: "destructive",
         });
         return;
       }
 
-      setProgress(50);
-      setLoadingMessage("Preparing registration...");
-
-      // Step 2: Get public URL
-      const { data: urlData } = supabase.storage
-        .from("nexnival25")
-        .getPublicUrl(filePath);
-
-      const publicUrl = urlData?.publicUrl;
-
-      setProgress(80);
-      setLoadingMessage("Submitting registration...");
-
-      // Step 3: Post registration data to backend (do NOT send id)
-      const payload = { ...formData, paymentScreenshot: publicUrl };
-      // Remove id if present
-      delete payload.id;
-
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        }
+      // 2. Check Phone
+      setLoadingMessage("Checking Phone...");
+      await new Promise((res) => setTimeout(res, 400));
+      setProgress(66);
+      const checkResPhone = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        { params: { phone: formData.phone } }
       );
-
-      if (!response.ok) {
+      if (checkResPhone.data.phoneExists) {
         setLoading(false);
         toast({
-          title: "Registration failed!",
-          description: "Server error. Please try again.",
+          title: "Duplicate Phone!",
+          description:
+            "This phone number is already registered. Please use a different phone number.",
           variant: "destructive",
         });
         return;
+      }
+
+      // 3. Check Transaction ID
+      setLoadingMessage("Checking Transaction ID...");
+      await new Promise((res) => setTimeout(res, 400));
+      setProgress(90);
+      const checkResTxn = await axios.get(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations/check`,
+        { params: { transactionId: formData.transactionId } }
+      );
+      if (checkResTxn.data.transactionIdExists) {
+        setLoading(false);
+        toast({
+          title: "Invalid Transaction ID!",
+          description:
+            "Check the transaction ID properly. Please enter a valid transaction ID. No Duplicates are allowed.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // 4. Upload screenshot
+      let screenshotUrl = "";
+      if (selectedFile) {
+        setLoadingMessage("Uploading screenshot...");
+        const fileName = `${Date.now()}_${selectedFile.name}`;
+        const { data, error } = await supabase.storage
+          .from("payments")
+          .upload(fileName, selectedFile);
+
+        if (error) {
+          setLoading(false);
+          toast({
+            title: "Screenshot upload failed!",
+            description: error.message,
+            variant: "destructive",
+          });
+          return;
+        }
+
+        // Get public URL
+        const { data: publicUrlData } = supabase.storage
+          .from("payments")
+          .getPublicUrl(fileName);
+
+        screenshotUrl = publicUrlData.publicUrl;
       }
 
       setProgress(100);
-      setLoadingMessage("Success!");
-      setTimeout(() => {
-        setLoading(false);
-        setShowSuccess(true);
-        setFormData({
-          id: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          phone: "",
-          college: "",
-          year: "",
-          branch: "",
-          location: "",
-          technicalEvent: "",
-          nonTechnicalEvent: "",
-          teamMembers: "",
-          foodPreference: "",
-          transactionId: "",
-          upiId: "",
-        });
-        setSelectedFile(null);
-      }, 500);
+      setLoadingMessage("Registering...");
+      await new Promise((res) => setTimeout(res, 300));
+
+      // 5. Send registration data (no id field)
+      await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
+        {
+          ...formData,
+          paymentScreenshot: screenshotUrl,
+        }
+      );
+
+      setLoading(false);
+      setFormData({
+        id: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        college: "",
+        year: "",
+        branch: "",
+        location: "",
+        technicalEvent: "",
+        nonTechnicalEvent: "",
+        teamMembers: "",
+        foodPreference: "",
+        transactionId: "",
+        upiId: "",
+      });
+      setSelectedFile(null);
+      setShowSuccess(true);
     } catch (err: any) {
       setLoading(false);
       toast({
-        title: "Registration failed!",
-        description: err?.message || "Unknown error.",
+        title: "Server Busy!",
+        description:
+          "Registration Failed! Please try again in Few Minutes or contact support.",
         variant: "destructive",
       });
     }
