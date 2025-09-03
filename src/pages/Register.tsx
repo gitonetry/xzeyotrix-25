@@ -18,7 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import qrImage from "@/assets/ragland-upi.jpeg";
 import axios from "axios";
-// import { supabase } from "@/supabaseClient";
+import { supabase } from "@/supabaseClient";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -41,6 +41,8 @@ const Register = () => {
     upiId: "",
   });
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [paymentScreenshotUrl, setPaymentScreenshotUrl] = useState<string>("");
+  const [uploading, setUploading] = useState(false);
 
   const imageInputRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
@@ -55,9 +57,35 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
+      const file = e.target.files[0];
+      setSelectedFile(file);
+      setUploading(true);
+      // Upload to Supabase
+      const fileExt = file.name.split(".").pop();
+      const fileName = `payment_${Date.now()}.${fileExt}`;
+      const { data, error } = await supabase.storage
+        .from("simp") // bucket name from your env
+        .upload(`payment_screenshots/${fileName}`, file);
+
+      if (error) {
+        toast({
+          title: "Image Upload Failed!",
+          description: "Could not upload payment screenshot. Try again.",
+          variant: "destructive",
+        });
+        setUploading(false);
+        return;
+      }
+
+      // Get public URL
+      const { data: publicUrlData } = supabase.storage
+        .from("simp")
+        .getPublicUrl(`payment_screenshots/${fileName}`);
+
+      setPaymentScreenshotUrl(publicUrlData.publicUrl);
+      setUploading(false);
     }
   };
 
@@ -126,17 +154,16 @@ const Register = () => {
         return;
       }
 
-      // --- Upload image via backend if selected ---
-      let screenshotUrl = "";
-      if (selectedFile) {
-        const formDataFile = new FormData();
-        formDataFile.append("file", selectedFile);
-        const uploadRes = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/files/upload`,
-          formDataFile,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-        screenshotUrl = uploadRes.data;
+      // --- Ensure screenshot uploaded ---
+      if (!paymentScreenshotUrl) {
+        setLoading(false);
+        toast({
+          title: "Upload Required!",
+          description:
+            "Please upload your payment screenshot before submitting.",
+          variant: "destructive",
+        });
+        return;
       }
 
       setProgress(100);
@@ -148,7 +175,7 @@ const Register = () => {
         `${import.meta.env.VITE_BACKEND_URL}/api/registrations`,
         {
           ...formData,
-          paymentScreenshot: screenshotUrl, // add new field
+          paymentScreenshot: paymentScreenshotUrl, // add new field
         }
       );
 
@@ -170,6 +197,7 @@ const Register = () => {
         upiId: "",
       });
       setSelectedFile(null);
+      setPaymentScreenshotUrl("");
       setShowSuccess(true);
     } catch (err: any) {
       setLoading(false);
@@ -654,6 +682,14 @@ const Register = () => {
                     className="glass border-white/20 focus:border-primary"
                     required
                   />
+                  {uploading && <p className="text-primary">Uploading...</p>}
+                  {paymentScreenshotUrl && (
+                    <img
+                      src={paymentScreenshotUrl}
+                      alt="Payment Screenshot Preview"
+                      style={{ maxWidth: 200, marginTop: 8, borderRadius: 8 }}
+                    />
+                  )}
                 </div>
 
                 {/* Transaction ID */}
