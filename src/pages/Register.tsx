@@ -37,6 +37,7 @@ const Register = () => {
     nonTechnicalEvent: "",
     teamMembers: "",
     foodPreference: "",
+    paymentScreenshot: "",
     transactionId: "",
     upiId: "",
   });
@@ -166,6 +167,7 @@ const Register = () => {
         nonTechnicalEvent: "",
         teamMembers: "",
         foodPreference: "",
+        paymentScreenshot: "",
         transactionId: "",
         upiId: "",
       });

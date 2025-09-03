@@ -30,7 +30,7 @@ const AboutSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            About <span className="text-primary neon-text">Xzeyotrix'25</span>
+            About <span className="text-primary neon-text">Nexnival'25</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
             Xzeyotrix'25 2025 is the premier hackathon event bringing together
