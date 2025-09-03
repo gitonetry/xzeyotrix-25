@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import imageCompression from "browser-image-compression";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -101,9 +102,21 @@ const Register = () => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setSelectedFile(e.target.files[0]);
+      let file = e.target.files[0];
+      // Compress image (do not set width/height, only maxSizeMB)
+      const options = { maxSizeMB: 1, useWebWorker: true };
+      try {
+        const compressedFile = await imageCompression(file, options);
+        setSelectedFile(compressedFile);
+      } catch (err: any) {
+        toast({
+          title: "Image compression failed!",
+          description: err.message,
+          variant: "destructive",
+        });
+      }
     }
   };
 
