@@ -66,7 +66,7 @@ const Register = () => {
       const fileExt = file.name.split(".").pop();
       const fileName = `payment_${Date.now()}.${fileExt}`;
       const { data, error } = await supabase.storage
-        .from("simp") // bucket name from your env
+        .from("nexnival25") // bucket name from your env
         .upload(`payment_screenshots/${fileName}`, file);
 
       if (error) {
