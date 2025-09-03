@@ -81,7 +81,7 @@ const Register = () => {
 
       // Get public URL
       const { data: publicUrlData } = supabase.storage
-        .from("simp")
+        .from("nexnival25")
         .getPublicUrl(`payment_screenshots/${fileName}`);
 
       setPaymentScreenshotUrl(publicUrlData.publicUrl);
