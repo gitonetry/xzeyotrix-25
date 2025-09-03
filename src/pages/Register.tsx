@@ -109,124 +109,38 @@ const Register = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    setLoading(true);
-    setProgress(0);
-    setLoadingMessage("Checking eMail...");
-
     try {
-      // 1. Check Email
-      setLoadingMessage("Checking eMail...");
-      await new Promise((res) => setTimeout(res, 400));
-      setProgress(33);
-      const checkRes = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/registrations/check?email=${encodeURIComponent(formData.email)}`
-      );
-      const checkResData = await checkRes.json();
-      if (checkResData.emailExists) {
-        setLoading(false);
-        toast({
-          title: "Duplicate Email!",
-          description:
-            "This email is already registered. Please use a different email.",
-          variant: "destructive",
-        });
+      // Step 1: Upload file to Supabase
+      const filePath = `payments/${Date.now()}_${selectedFile!.name}`;
+      const { error } = await supabase.storage
+        .from("nexnival25")
+        .upload(filePath, selectedFile!, { upsert: true });
+
+      if (error) {
+        alert("File upload failed!");
         return;
       }
 
-      // Check Phone
-      setLoadingMessage("Checking Phone...");
-      await new Promise((res) => setTimeout(res, 400));
-      setProgress(66);
-      const checkResPhone = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/registrations/check?phone=${encodeURIComponent(formData.phone)}`
-      );
-      const checkResPhoneData = await checkResPhone.json();
-      if (checkResPhoneData.phoneExists) {
-        setLoading(false);
-        toast({
-          title: "Duplicate Phone!",
-          description:
-            "This phone number is already registered. Please use a different phone number.",
-          variant: "destructive",
-        });
-        return;
-      }
+      // Step 2: Get public URL
+      const { data: urlData } = supabase.storage
+        .from("nexnival25")
+        .getPublicUrl(filePath);
 
-      // Check Transaction ID
-      setLoadingMessage("Checking Transaction ID...");
-      await new Promise((res) => setTimeout(res, 400));
-      setProgress(90);
-      const checkResTxn = await fetch(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/registrations/check?transactionId=${encodeURIComponent(
-          formData.transactionId
-        )}`
-      );
-      const checkResTxnData = await checkResTxn.json();
-      if (checkResTxnData.transactionIdExists) {
-        setLoading(false);
-        toast({
-          title: "Invalid Transaction ID!",
-          description:
-            "Check the transaction ID properly. Please enter a valid transaction ID. No Duplicates are allowed.",
-          variant: "destructive",
-        });
-        return;
-      }
+      const publicUrl = urlData?.publicUrl;
 
-      // --- Ensure screenshot selected ---
-      if (!selectedFile) {
-        setLoading(false);
-        toast({
-          title: "Upload Required!",
-          description:
-            "Please upload your payment screenshot before submitting.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      setProgress(100);
-      setLoadingMessage("Registering...");
-      await new Promise((res) => setTimeout(res, 300));
-
-      // --- Upload screenshot and register user ---
-      await registerUser(formData, selectedFile);
-
-      setLoading(false);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        college: "",
-        year: "",
-        branch: "",
-        location: "",
-        technicalEvent: "",
-        nonTechnicalEvent: "",
-        teamMembers: "",
-        foodPreference: "",
-        transactionId: "",
-        upiId: "",
+      // Step 3: Post registration data to backend
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/registrations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          paymentScreenshot: publicUrl, // ✅ include Supabase URL
+        }),
       });
-      setSelectedFile(null);
-      setShowSuccess(true);
-    } catch (err: any) {
-      setLoading(false);
-      let errorMsg =
-        err?.message ||
-        "Registration Failed! Please try again in Few Minutes or contact support.";
-      toast({
-        title: "Server Busy!",
-        description: errorMsg,
-        variant: "destructive",
-      });
+
+      alert("Registration successful!");
+    } catch (err) {
+      alert("Registration failed!");
     }
   };
 
