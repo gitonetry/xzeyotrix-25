@@ -67,12 +67,14 @@ const Register = () => {
       const fileName = `payment_${Date.now()}.${fileExt}`;
       const { data, error } = await supabase.storage
         .from("nexnival25") // bucket name from your env
-        .upload(`payment_screenshots/${fileName}`, file);
+        .upload(`payment_screenshots/${fileName}`, file, { upsert: true });
 
       if (error) {
+        console.error("Supabase upload error:", error);
         toast({
           title: "Image Upload Failed!",
-          description: "Could not upload payment screenshot. Try again.",
+          description:
+            error.message || "Could not upload payment screenshot. Try again.",
           variant: "destructive",
         });
         setUploading(false);
