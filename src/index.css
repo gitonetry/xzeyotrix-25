@@ -114,8 +114,8 @@ All colors MUST be HSL.
   }
   
   .neon-text {
-    text-shadow: 0 0 8px hsl(var(--neon-cyan)),
-                 0 0 8px hsl(var(--neon-cyan)),
+    text-shadow: 0 0 4px hsl(var(--neon-cyan)),
+                 0 0 4px hsl(var(--neon-cyan)),
                  0 0 30px hsl(var(--neon-cyan));
   }
   

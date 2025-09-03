@@ -640,6 +640,22 @@ const Register = () => {
                   </div>
                 </div>
 
+                {/* Upload Payment Screenshot */}
+                <div className="space-y-2">
+                  <Label htmlFor="paymentScreenshot">
+                    Payment Screenshot *
+                  </Label>
+                  <Input
+                    id="paymentScreenshot"
+                    type="file"
+                    accept="image/*"
+                    ref={imageInputRef}
+                    onChange={handleImageChange}
+                    className="glass border-white/20 focus:border-primary"
+                    required
+                  />
+                </div>
+
                 {/* Transaction ID */}
                 <div className="space-y-2">
                   <Label htmlFor="transactionId">Transaction ID *</Label>

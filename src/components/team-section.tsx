@@ -7,12 +7,25 @@ import kavithaImg from "@/assets/Dr.Kavitha.jpeg";
 const TeamSection = () => {
   const coordinators = [
     {
-      name: "Dr. Balasubrmanian",
+      name: "Dr. C. Balasubrmanian",
       role: "Department HOD",
       department: "Computer Science",
       email: "rc.balasubramanian@psr.edu.in",
       phone: "+91 73730 87080",
       image: balasubrmanianImg,
+      social: {
+        linkedin: "https://linkedin.com/in/name",
+        twitter: "https://twitter.com/name",
+      },
+    },
+
+    {
+      name: "Dr. A. Ramathilagam",
+      role: "Professor",
+      department: "Computer Science",
+      email: "ramathilagam@psr.edu.in",
+      phone: "+91 99424 17425",
+      image: ramathilagamImg,
       social: {
         linkedin: "https://linkedin.com/in/name",
         twitter: "https://twitter.com/name",
@@ -31,22 +44,10 @@ const TeamSection = () => {
       },
     },
     {
-      name: "Dr. Ramathilagam",
-      role: "Professor",
-      department: "Computer Science",
-      email: "ramathilagam@psr.edu.in",
-      phone: "+91 99424 17425",
-      image: ramathilagamImg,
-      social: {
-        linkedin: "https://linkedin.com/in/name",
-        twitter: "https://twitter.com/name",
-      },
-    },
-    {
-      name: "Dr. Kavitha",
+      name: "Dr. P. Kavitha",
       role: "Associate Professor",
       department: "Computer Science",
-      email: "pkavitha@psr.edu.in",
+      email: "kavitha.p@psr.edu.in",
       phone: "+91 96000 83856",
       image: kavithaImg,
       social: {
@@ -108,14 +109,14 @@ const TeamSection = () => {
                     <Mail className="h-4 w-4" />
                     <span>{coordinator.email}</span>
                   </div>
-                  <div className="flex items-center justify-center space-x-2 text-foreground/70">
+                  {/* <div className="flex items-center justify-center space-x-2 text-foreground/70">
                     <Phone className="h-4 w-4" />
                     <span>{coordinator.phone}</span>
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Social Links */}
-                <div className="flex justify-center space-x-3 pt-4">
+                {/* <div className="flex justify-center space-x-3 pt-4">
                   {coordinator.social.linkedin && (
                     <a
                       href={coordinator.social.linkedin}
@@ -136,7 +137,7 @@ const TeamSection = () => {
                       <Twitter className="h-5 w-5" />
                     </a>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

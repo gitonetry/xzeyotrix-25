@@ -16,7 +16,7 @@ const AboutSection = () => {
     {
       icon: Trophy,
       title: "Massive Prizes",
-      description: "₹1L+ prize pool with exciting rewards for winners",
+      description: "Amazing prize pool with exciting rewards for winners",
     },
     {
       icon: Users,
@@ -32,11 +32,15 @@ const AboutSection = () => {
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
             About <span className="text-primary neon-text">Nexnival'25</span>
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-            Xzeyotrix'25 2025 is the premier hackathon event bringing together
-            the brightest minds in technology. Join us for an intense journey of
-            innovation, collaboration, and ground-breaking solutions that will
-            shape the future of tech.
+          <p className="text-xl text-foreground/80 max-w-5xl mx-auto leading-relaxed">
+            A symposium conducted by the Department of Computer Science and
+            Engineering serves as a platform for knowledge sharing and
+            interaction among students, faculty, researchers, and industry
+            professionals. Unlike broad international conferences, it focuses on
+            specific scholarly themes, enabling in-depth discussion and critical
+            debate. The event encourages collaboration by integrating academic
+            research with practical industry insights. Ultimately, it enriches
+            student learning while bridging the gap between theory and practice.
           </p>
         </div>
 

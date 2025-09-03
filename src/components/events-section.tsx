@@ -26,7 +26,7 @@ const EventsSection = () => {
         "Participants showcase their research, innovative ideas, or technical concepts through structured presentations. They explain their topic with data, analysis, and visuals. Judges assess based on clarity, relevance, and originality. This event encourages public speaking and critical thinking. A great platform to share knowledge with peers and experts",
       prizes: "",
       duration: "5 minutes",
-      team: "1-4 members",
+      team: "2-4 members",
     },
     {
       id: "ai-ml",

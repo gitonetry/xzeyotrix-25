@@ -136,7 +136,7 @@ const TimelineSection = () => {
             Event <span className="text-primary neon-text">Timeline</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            A carefully planned schedule of exciting events and workshops
+            A carefully planned schedule of exciting Events
           </p>
         </div>
 

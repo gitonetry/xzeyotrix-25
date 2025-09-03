@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, Users, Trophy } from "lucide-react";
+import { Calendar, MapPin, Users, Trophy, University } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-hackathon.jpg";
 
@@ -13,7 +13,7 @@ const HeroSection = () => {
   });
 
   // Countdown to hackathon date (Sep 26, 2025)
-  const hackathonDate = new Date("2025-09-26T00:00:00");
+  const hackathonDate = new Date("2025-09-25T00:00:00");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -55,13 +55,13 @@ const HeroSection = () => {
           {/* Main Title */}
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-bold neon-text">
-              NEXNIVAL<span className="text-accent">'25</span>
+              Nexival<span className="text-accent">'25</span>
             </h1>
             <h2 className="text-2xl md:text-4xl font-light text-primary">
               2025
             </h2>
             <p className="text-xl md:text-2xl text-foreground/80 max-w-2xl mx-auto">
-              The Ultimate College Hackathon Experience
+              A National Level Inter - Collegiate Technical Symposium
             </p>
           </div>
 
@@ -69,15 +69,15 @@ const HeroSection = () => {
           <div className="flex flex-wrap justify-center gap-6 text-foreground/80">
             <div className="flex items-center space-x-2">
               <Calendar className="h-5 w-5 text-primary" />
-              <span>September 26, 2025</span>
+              <span>September 25, 2025</span>
             </div>
             <div className="flex items-center space-x-2">
               <MapPin className="h-5 w-5 text-primary" />
-              <span>Sivakasi</span>
+              <span>PSR Engineering College</span>
             </div>
             <div className="flex items-center space-x-2">
-              <Users className="h-5 w-5 text-primary" />
-              <span>500+ Participants</span>
+              <University className="h-5 w-5 text-primary" />
+              <span>CSE Auditorium</span>
             </div>
             <div className="flex items-center space-x-2">
               <Trophy className="h-5 w-5 text-primary" />
