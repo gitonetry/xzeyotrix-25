@@ -37,7 +37,6 @@ const Register = () => {
     nonTechnicalEvent: "",
     teamMembers: "",
     foodPreference: "",
-    paymentScreenshot: "",
     transactionId: "",
     upiId: "",
   });
@@ -167,7 +166,6 @@ const Register = () => {
         nonTechnicalEvent: "",
         teamMembers: "",
         foodPreference: "",
-        paymentScreenshot: "",
         transactionId: "",
         upiId: "",
       });
@@ -640,25 +638,6 @@ const Register = () => {
                       className="h-100 w-60 object-contain rounded-lg border border-white/20 bg-white p-2"
                     />
                   </div>
-                </div>
-
-                {/* Image Upload */}
-                <div className="space-y-2">
-                  <Label htmlFor="imageUpload">Upload Payment Screenshot</Label>
-                  <Input
-                    id="imageUpload"
-                    type="file"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    className="glass border-white/20 focus:border-primary"
-                  />
-                  {selectedFile && (
-                    <div className="mt-2">
-                      <span className="text-xs text-foreground/70">
-                        Selected: {selectedFile.name}
-                      </span>
-                    </div>
-                  )}
                 </div>
 
                 {/* Transaction ID */}
