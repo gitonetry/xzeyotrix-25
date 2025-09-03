@@ -69,7 +69,6 @@ const Register = () => {
   const [showSuccess, setShowSuccess] = useState(false);
   const { toast, dismiss } = useToast(); // add dismiss
   const [formData, setFormData] = useState({
-    id: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -179,7 +178,7 @@ const Register = () => {
         setLoadingMessage("Uploading screenshot...");
         const fileName = `${Date.now()}_${selectedFile.name}`;
         const { data, error } = await supabase.storage
-          .from("payments")
+          .from("nexnival25")
           .upload(fileName, selectedFile);
 
         if (error) {
@@ -194,7 +193,7 @@ const Register = () => {
 
         // Get public URL
         const { data: publicUrlData } = supabase.storage
-          .from("payments")
+          .from("nexnival25")
           .getPublicUrl(fileName);
 
         screenshotUrl = publicUrlData.publicUrl;
@@ -215,7 +214,6 @@ const Register = () => {
 
       setLoading(false);
       setFormData({
-        id: "",
         firstName: "",
         lastName: "",
         email: "",
