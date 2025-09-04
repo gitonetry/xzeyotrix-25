@@ -725,11 +725,19 @@ const Register = () => {
                     required
                   />
                   {selectedFile && (
-                    <img
-                      src={URL.createObjectURL(selectedFile)}
-                      alt="Payment Screenshot Preview"
-                      style={{ maxWidth: 200, marginTop: 8, borderRadius: 8 }}
-                    />
+                    <div className="flex items-center mt-2 bg-background/80 border border-white/20 rounded-lg px-4 py-2 w-fit shadow-sm">
+                      <span className="mr-2 text-foreground/90 font-medium text-base">
+                        {selectedFile.name}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => setSelectedFile(null)}
+                        className="ml-2 text-red-500 hover:text-red-700 focus:outline-none"
+                        aria-label="Remove file"
+                      >
+                        &#10005;
+                      </button>
+                    </div>
                   )}
                 </div>
 
