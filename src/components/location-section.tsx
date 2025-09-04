@@ -1,4 +1,4 @@
-import { MapPin, Navigation, Clock, Phone, Car, Bus } from "lucide-react";
+import { MapPin, Clock, Phone, Building } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const LocationSection = () => {
@@ -41,13 +41,27 @@ const LocationSection = () => {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="glass rounded-lg p-4">
                   <div className="flex items-center space-x-2 mb-2">
+                    <Building className="h-5 w-5 text-primary" />
+                    <span className="font-semibold text-foreground">
+                      Venue Hours
+                    </span>
+                  </div>
+                  <p className="text-foreground/70 text-sm">
+                    CSE Auditorium
+                    {/* <br />
+                    March 16: 24/7 Access
+                    <br />
+                    March 17: 12:00 AM - 10:00 PM */}
+                  </p>
+
+                  <div className="flex items-center space-x-2 mb-2">
                     <Clock className="h-5 w-5 text-primary" />
                     <span className="font-semibold text-foreground">
                       Venue Hours
                     </span>
                   </div>
                   <p className="text-foreground/70 text-sm">
-                    CSE Seminar Hall - 9:00 AM
+                    CSE Auditorium
                     {/* <br />
                     March 16: 24/7 Access
                     <br />
@@ -63,9 +77,9 @@ const LocationSection = () => {
                     </span>
                   </div>
                   <p className="text-foreground/70 text-sm">
-                    +91 98765 43200
+                    +91 63690 45590
                     <br />
-                    security@psr.edu
+                    kesavan@psr.edu.in
                     <br />
                     Available 24/7
                   </p>
@@ -215,7 +229,7 @@ const LocationSection = () => {
             </div>
 
             {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 mt-8">
+            {/* <div className="grid grid-cols-3 gap-4 mt-8">
               <div className="text-center glass rounded-lg p-4">
                 <div className="text-2xl font-bold text-primary">50k</div>
                 <div className="text-xs text-foreground/60">Sq Ft Space</div>
@@ -228,7 +242,7 @@ const LocationSection = () => {
                 <div className="text-2xl font-bold text-primary">24/7</div>
                 <div className="text-xs text-foreground/60">Access</div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

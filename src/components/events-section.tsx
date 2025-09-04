@@ -19,7 +19,7 @@ const EventsSection = () => {
   const technicalEvents = [
     {
       id: "web-dev",
-      title: "Paper Presentation",
+      title: "Insight Expo",
       icon: Presentation,
       shortDesc: "Present research or innovative ideas formally and clearly",
       fullDesc:
@@ -30,7 +30,7 @@ const EventsSection = () => {
     },
     {
       id: "ai-ml",
-      title: "Tech Quiz",
+      title: "QuizWiz",
       icon: Lightbulb,
       shortDesc: "Compete in a timed quiz on core technical subjects",
       fullDesc:
@@ -41,7 +41,7 @@ const EventsSection = () => {
     },
     {
       id: "mobile-dev",
-      title: "Tech Debates",
+      title: "Tech Tussle",
       icon: User,
       shortDesc: "Debate trending tech topics with facts and logic",
       fullDesc:
@@ -52,7 +52,7 @@ const EventsSection = () => {
     },
     {
       id: "blockchain",
-      title: "UI / UX Design Challenge",
+      title: "Pixel Perfect",
       icon: Palette,
       shortDesc: "Design creative, user-friendly app or website mock-ups",
       fullDesc:
@@ -66,7 +66,7 @@ const EventsSection = () => {
   const nonTechnicalEvents = [
     {
       id: "pitch-perfect",
-      title: "Connections",
+      title: "NetworX",
       icon: Link,
       shortDesc: "Find the hidden link between given clues",
       fullDesc:
@@ -77,7 +77,7 @@ const EventsSection = () => {
     },
     {
       id: "design-thinking",
-      title: "AdZap",
+      title: "Spotlight Snap",
       icon: Clapperboard,
       shortDesc: "Create instant ads for quirky, imaginary products",
       fullDesc:
@@ -88,7 +88,7 @@ const EventsSection = () => {
     },
     {
       id: "ui-ux",
-      title: "Tech Pictionary",
+      title: "Doodle Vision",
       icon: VideotapeIcon,
       shortDesc: "Draw tech terms for your team to guess",
       fullDesc:
@@ -99,7 +99,7 @@ const EventsSection = () => {
     },
     {
       id: "brain-teasers",
-      title: "Tagline Twist",
+      title: "Brand Buzz",
       icon: Shuffle,
       shortDesc: "Rewrite famous slogans with a fun twist",
       fullDesc:

@@ -55,7 +55,7 @@ const HeroSection = () => {
           {/* Main Title */}
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-bold neon-text">
-              Nexival<span className="text-accent">'25</span>
+              Nexnival<span className="text-accent">'25</span>
             </h1>
             <h2 className="text-2xl md:text-4xl font-light text-primary">
               2025

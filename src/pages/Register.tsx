@@ -279,6 +279,7 @@ const Register = () => {
         onClose={() => {
           setShowSuccess(false);
           navigate("/");
+          window.scrollTo(0, 0);
         }}
       />
       {/* Futuristic Loading Overlay */}
