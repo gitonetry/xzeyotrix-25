@@ -27,6 +27,8 @@ const supabase = createClient(
   import.meta.env.VITE_SUPABASE_ANON_KEY!
 );
 
+const SUPABASE_BUCKET = import.meta.env.VITE_SUPABASE_BUCKET || "nexnival25";
+
 async function registerUser(formData: any, file: File) {
   // 1. Upload screenshot to Supabase
   const fileName = `${Date.now()}-${file.name}`;
@@ -105,17 +107,27 @@ const Register = () => {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       let file = e.target.files[0];
-      // Compress image (do not set width/height, only maxSizeMB)
       const options = { maxSizeMB: 1, useWebWorker: true };
       try {
+        if (file.size > 5 * 1024 * 1024) {
+          toast({
+            title: "Large file!",
+            description:
+              "Please select an image smaller than 5MB for faster upload.",
+            variant: "destructive",
+          });
+          return;
+        }
         const compressedFile = await imageCompression(file, options);
         setSelectedFile(compressedFile);
       } catch (err: any) {
+        // Fallback: use original file if compression fails
         toast({
           title: "Image compression failed!",
-          description: err.message,
-          variant: "destructive",
+          description: "Uploading original image instead.",
+          variant: "default",
         });
+        setSelectedFile(file);
       }
     }
   };
@@ -191,7 +203,7 @@ const Register = () => {
         setLoadingMessage("Uploading screenshot...");
         const fileName = `${Date.now()}_${selectedFile.name}`;
         const { data, error } = await supabase.storage
-          .from("nexnival25")
+          .from(SUPABASE_BUCKET)
           .upload(fileName, selectedFile);
 
         if (error) {
@@ -206,7 +218,7 @@ const Register = () => {
 
         // Get public URL
         const { data: publicUrlData } = supabase.storage
-          .from("nexnival25")
+          .from(SUPABASE_BUCKET)
           .getPublicUrl(fileName);
 
         screenshotUrl = publicUrlData.publicUrl;
