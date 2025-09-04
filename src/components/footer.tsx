@@ -19,22 +19,22 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: "https://github.com/cyberhack2024", label: "GitHub" },
-    {
-      icon: Twitter,
-      href: "https://twitter.com/cyberhack2024",
-      label: "Twitter",
-    },
-    {
-      icon: Linkedin,
-      href: "https://linkedin.com/company/cyberhack2024",
-      label: "LinkedIn",
-    },
-    {
-      icon: Instagram,
-      href: "https://instagram.com/cyberhack2024",
-      label: "Instagram",
-    },
+    // { icon: Github, href: "https://github.com/cyberhack2024", label: "GitHub" },
+    // {
+    //   icon: Twitter,
+    //   href: "https://twitter.com/cyberhack2024",
+    //   label: "Twitter",
+    // },
+    // {
+    //   icon: Linkedin,
+    //   href: "https://linkedin.com/company/cyberhack2024",
+    //   label: "LinkedIn",
+    // },
+    // {
+    //   icon: Instagram,
+    //   href: "https://instagram.com/cyberhack2024",
+    //   label: "Instagram",
+    // },
   ];
 
   const scrollToSection = (href: string) => {

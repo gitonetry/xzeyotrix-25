@@ -42,9 +42,7 @@ const LocationSection = () => {
                 <div className="glass rounded-lg p-4">
                   <div className="flex items-center space-x-2 mb-2">
                     <Building className="h-5 w-5 text-primary" />
-                    <span className="font-semibold text-foreground">
-                      Venue Hours
-                    </span>
+                    <span className="font-semibold text-foreground">Venue</span>
                   </div>
                   <p className="text-foreground/70 text-sm">
                     CSE Auditorium
@@ -56,12 +54,10 @@ const LocationSection = () => {
 
                   <div className="flex items-center space-x-2 mb-2">
                     <Clock className="h-5 w-5 text-primary" />
-                    <span className="font-semibold text-foreground">
-                      Venue Hours
-                    </span>
+                    <span className="font-semibold text-foreground">Hours</span>
                   </div>
                   <p className="text-foreground/70 text-sm">
-                    CSE Auditorium
+                    Sep 25: 9:00 AM
                     {/* <br />
                     March 16: 24/7 Access
                     <br />

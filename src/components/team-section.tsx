@@ -158,9 +158,9 @@ const TeamSection = () => {
                 <Mail className="h-5 w-5 mr-2 inline" />
                 Contact Us
               </button>
-              <button className="glass-hover border border-primary text-primary px-6 py-3 rounded-lg">
+              {/* <button className="glass-hover border border-primary text-primary px-6 py-3 rounded-lg">
                 Join Discord
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
