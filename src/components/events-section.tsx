@@ -162,7 +162,7 @@ const EventsSection = () => {
               </p>
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="glass rounded-lg p-3">
-                  <div className="text-sm text-foreground/60">Prize Pool</div>
+                  <div className="text-sm text-foreground/60">Place</div>
                   <div className="text-accent font-semibold">
                     {event.prizes}
                   </div>
