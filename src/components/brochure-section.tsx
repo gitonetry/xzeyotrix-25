@@ -24,7 +24,7 @@ const BrochureSection = () => {
                     <div className="text-center space-y-4">
                       <FileText className="h-20 w-20 text-primary mx-auto" />
                       <h3 className="text-2xl font-bold text-foreground">
-                        Xzeyotrix'25
+                        Nexnival'25
                       </h3>
                       <p className="text-foreground/70">
                         Official Event Brochure
@@ -46,8 +46,8 @@ const BrochureSection = () => {
                   </h3>
                   <p className="text-foreground/80 leading-relaxed">
                     Our detailed brochure contains everything you need to know
-                    about Xzeyotrix'25, including event schedules, rules,
-                    prizes, venue information, and much more.
+                    about Nexnival'25, including event schedules, rules, prizes,
+                    venue information, and much more.
                   </p>
                 </div>
 

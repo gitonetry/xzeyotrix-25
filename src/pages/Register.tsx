@@ -17,7 +17,7 @@ import SuccessModal from "@/components/ui/SuccessModal";
 import Background3D from "@/components/ui/3d-background";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import qrImage from "@/assets/ragland-upi.jpeg";
+import qrImage from "@/assets/ragland-upi-200.jpeg";
 import axios from "axios";
 
 import { createClient } from "@supabase/supabase-js";
@@ -363,7 +363,7 @@ const Register = () => {
           </Link>
 
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Join <span className="text-primary neon-text">Xzeyotrix</span>'25
+            Join <span className="text-primary neon-text">Nexnival</span>'25
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
             Register now to secure your spot in the ultimate hackathon
@@ -780,10 +780,9 @@ const Register = () => {
             <div className="glass rounded-2xl p-8">
               <div className="space-y-6">
                 <div className="text-sm text-foreground/70">
-                  <p>By registering for Xzeyotrix'25, you agree to:</p>
+                  <p>By registering for Nexnival'25, you agree to:</p>
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>Follow the event code of conduct</li>
-                    <li>Allow photography and recording during the event</li>
                     <li>Receive event-related communications</li>
                     <li>Participate fairly and ethically</li>
                   </ul>

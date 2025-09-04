@@ -65,7 +65,7 @@ const TeamSection = () => {
             Meet Our <span className="text-primary neon-text">Team</span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Get to know the amazing coordinators who are making Xzeyotrix'25
+            Get to know the amazing coordinators who are making Nexnival'25
             possible
           </p>
         </div>

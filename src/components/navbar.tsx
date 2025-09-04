@@ -48,7 +48,7 @@ const Navbar = () => {
               <div className="absolute inset-0 bg-primary/20 blur-lg group-hover:bg-accent/20 transition-all duration-300" />
             </div>
             <span className="text-xl font-bold text-foreground group-hover:neon-text transition-all duration-300">
-              Xzeyotrix'25
+              Nexnival'25
             </span>
           </Link>
 

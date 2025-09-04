@@ -56,7 +56,7 @@ const Footer = () => {
                 <div className="absolute inset-0 bg-primary/20 blur-lg" />
               </div>
               <span className="text-2xl font-bold text-foreground">
-                Xzeyotrix'25
+                Nexnival'25
               </span>
             </div>
             <p className="text-foreground/70 leading-relaxed">
@@ -113,7 +113,7 @@ const Footer = () => {
               <div className="flex items-start space-x-3">
                 <Mail className="h-5 w-5 text-primary mt-0.5" />
                 <div>
-                  <p className="text-foreground/70">Xzeyotrix25@psr.edu.in</p>
+                  <p className="text-foreground/70">nexnival@psr.edu.in</p>
                   <p className="text-foreground/70">support@psr.edu.in</p>
                 </div>
               </div>
@@ -172,8 +172,8 @@ const Footer = () => {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-foreground/60 text-sm">
-              © Xzeyotrix'25. All rights reserved. Made with ❤️ by the
-              organizing team.
+              © Nexnival'25. All rights reserved. Made with ❤️ by the organizing
+              team.
             </div>
             {/* <div className="flex space-x-6 text-sm">
               <a
