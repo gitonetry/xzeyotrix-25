@@ -8,8 +8,8 @@ const TeamSection = () => {
   const coordinators = [
     {
       name: "Dr. C. Balasubrmanian",
-      role: "Department HOD",
-      department: "Computer Science",
+      role: "Department Head and Professor",
+      department: "Computer Science and Engineering",
       email: "rc.balasubramanian@psr.edu.in",
       phone: "+91 73730 87080",
       image: balasubrmanianImg,
@@ -22,7 +22,7 @@ const TeamSection = () => {
     {
       name: "Dr. A. Ramathilagam",
       role: "Professor",
-      department: "Computer Science",
+      department: "Computer Science and Engineering",
       email: "ramathilagam@psr.edu.in",
       phone: "+91 99424 17425",
       image: ramathilagamImg,
@@ -34,7 +34,7 @@ const TeamSection = () => {
     {
       name: "Dr. R. Palanikumar",
       role: "Associate Professor",
-      department: "Computer Science",
+      department: "Computer Science and Engineering",
       email: "palanikumar@psr.edu.in",
       phone: "+91 98659 06165",
       image: palanikumarImg,
@@ -46,7 +46,7 @@ const TeamSection = () => {
     {
       name: "Dr. P. Kavitha",
       role: "Associate Professor",
-      department: "Computer Science",
+      department: "Computer Science and Engineering",
       email: "kavitha.p@psr.edu.in",
       phone: "+91 96000 83856",
       image: kavithaImg,
@@ -104,16 +104,16 @@ const TeamSection = () => {
                 </div>
 
                 {/* Contact Info */}
-                <div className="space-y-2 text-sm">
+                {/* <div className="space-y-2 text-sm">
                   <div className="flex items-center justify-center space-x-2 text-foreground/70">
                     <Mail className="h-4 w-4" />
                     <span>{coordinator.email}</span>
                   </div>
-                  {/* <div className="flex items-center justify-center space-x-2 text-foreground/70">
+                  <div className="flex items-center justify-center space-x-2 text-foreground/70">
                     <Phone className="h-4 w-4" />
                     <span>{coordinator.phone}</span>
-                  </div> */}
-                </div>
+                  </div>
+                </div> */}
 
                 {/* Social Links */}
                 {/* <div className="flex justify-center space-x-3 pt-4">

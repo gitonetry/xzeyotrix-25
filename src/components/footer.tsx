@@ -60,9 +60,9 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-foreground/70 leading-relaxed">
-              The ultimate college hackathon experience bringing together
-              brilliant minds to create innovative solutions and shape the
-              future of technology.
+              Our National Level Technical symposium promotes knowledge sharing,
+              focusing on specific themes that connect academic research with
+              industry insights to enrich student learning.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map(({ icon: Icon, href, label }) => (
@@ -116,7 +116,6 @@ const Footer = () => {
                   <p className="text-foreground/70">
                     cse_association@psr.edu.in
                   </p>
-                  <p className="text-foreground/70">support@psr.edu.in</p>
                 </div>
               </div>
               <div className="flex items-start space-x-3">

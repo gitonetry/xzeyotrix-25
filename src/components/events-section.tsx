@@ -21,9 +21,13 @@ const EventsSection = () => {
       id: "web-dev",
       title: "Insight Expo",
       icon: Presentation,
-      shortDesc: "Present research or innovative ideas formally and clearly",
-      fullDesc:
-        "Participants showcase their research, innovative ideas, or technical concepts through structured presentations. They explain their topic with data, analysis, and visuals. Judges assess based on clarity, relevance, and originality. This event encourages public speaking and critical thinking. A great platform to share knowledge with peers and experts",
+      shortDesc:
+        "Paper Presentation: Present research or innovative ideas formally and clearly",
+      fullDesc: [
+        "Two members per team.",
+        "Presentations should not exceed 5 minutes, followed by 3 minutes for Q&A session.",
+        "Judges will evaluate based on originality, research depth, innovation, and presentation skills.",
+      ],
       prizes: "",
       duration: "5 minutes",
       team: "2-4 members",
@@ -32,9 +36,14 @@ const EventsSection = () => {
       id: "ai-ml",
       title: "QuizWiz",
       icon: Lightbulb,
-      shortDesc: "Compete in a timed quiz on core technical subjects",
-      fullDesc:
-        "A brain-teasing quiz covering AI, Machine Learning, Operating Systems, DBMS, and core engineering subjects. Teams compete to answer questions under time pressure. Questions range from basics to advanced problem-solving. Quick thinking and teamwork are essential. An engaging way to sharpen technical knowledge",
+      shortDesc:
+        "Tech Quiz: Compete in a timed quiz on core technical subjects",
+      fullDesc: [
+        "Two members per team.",
+        "The event will have three rounds: preliminary, rapid-fire, and final.",
+        "The use of mobile phones or any gadgets is strictly prohibited.",
+        "In case of a tie, a tiebreaker question will decide the winner.",
+      ],
       prizes: "",
       duration: "",
       team: "2-4 members",
@@ -43,9 +52,13 @@ const EventsSection = () => {
       id: "mobile-dev",
       title: "Tech Tussle",
       icon: User,
-      shortDesc: "Debate trending tech topics with facts and logic",
-      fullDesc:
-        "Participants are split into teams to debate trending tech issues such as AI ethics, data privacy, and automation impacts. The event sharpens analytical and communication skills. Judges evaluate clarity, logical reasoning, and factual accuracy. Participants learn to view technology from multiple perspectives. A mix of intellect and persuasive power",
+      shortDesc:
+        "Tech Debate: Debate trending tech topics with facts and logic",
+      fullDesc: [
+        "A tech topic will be provided and the participant should present their views on it.",
+        "Each participant is required to take utmost 2 to 3 minutes.",
+        "The winner will be decided based on criteria like clarity, evidence, and delivery.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "1 member",
@@ -54,9 +67,12 @@ const EventsSection = () => {
       id: "blockchain",
       title: "Pixel Perfect",
       icon: Palette,
-      shortDesc: "Design creative, user-friendly app or website mock-ups",
-      fullDesc:
-        "Participants design creative, functional mock-ups for apps or websites. The focus is on aesthetics, usability, and improving user experience. Tools like Figma or Adobe XD can be used. Designs are judged for creativity, functionality, and clarity. A perfect stage for aspiring designers to showcase their skills",
+      shortDesc:
+        "UI/UX: Design creative, user-friendly app or website mock-ups",
+      fullDesc: [
+        "The participant’s design should align with the event’s theme or assigned app concept.",
+        "The winner will be judged based on creativity, usability, and aesthetics.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "1 member",
@@ -68,9 +84,12 @@ const EventsSection = () => {
       id: "pitch-perfect",
       title: "NetworX",
       icon: Link,
-      shortDesc: "Find the hidden link between given clues",
-      fullDesc:
-        "Players are shown a series of images or text clues. The goal is to deduce the connection between them. The challenge combines observation, reasoning, and lateral thinking. Questions can be tech-related or purely logical. A fun way to spark creativity and quick thinking",
+      shortDesc: "Connection: Find the hidden link between given clues",
+      fullDesc: [
+        "Two to three members per team.",
+        "Participants must identify common themes or patterns to recognize recurring ideas or similarities.",
+        "They must then analyze technological or logical relationships to see how different elements connect and impact each other.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "1-3 members",
@@ -79,9 +98,13 @@ const EventsSection = () => {
       id: "design-thinking",
       title: "Spotlight Snap",
       icon: Clapperboard,
-      shortDesc: "Create instant ads for quirky, imaginary products",
-      fullDesc:
-        "Teams are given quirky or imaginary products and must create spontaneous, humorous advertisements. Creativity and humor are key. Participants can use acting, slogans, or props. Judges assess originality, wit, and audience engagement. A fun-filled event that blends drama and marketing skills",
+      shortDesc:
+        "AdZap: Create fun, impromptu ads for imaginary/funny tech items",
+      fullDesc: [
+        "Participants are given an imaginary tech item and 10-15 minutes to create a short ad.",
+        "The evaluation criteria include creativity and quick thinking.",
+        "The ad must highlight the tech item’s features, benefits, and a catchy tagline.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "3-5 members",
@@ -90,9 +113,11 @@ const EventsSection = () => {
       id: "ui-ux",
       title: "Doodle Vision",
       icon: VideotapeIcon,
-      shortDesc: "Draw tech terms for your team to guess",
-      fullDesc:
-        "One player draws while teammates guess the technical term or concept. The challenge is to think visually and simplify complex ideas. The clock adds excitement and tension. This event combines art, tech knowledge, and quick thinking. A lighthearted yet competitive activity for all skill levels",
+      shortDesc: "Tech Pictionary: Draw tech terms for your team to guess",
+      fullDesc: [
+        "Two to three members per team.",
+        "The team that makes the maximum right guesses will be considered the winner.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "1-3 members",
@@ -101,9 +126,12 @@ const EventsSection = () => {
       id: "brain-teasers",
       title: "Brand Buzz",
       icon: Shuffle,
-      shortDesc: "Rewrite famous slogans with a fun twist",
-      fullDesc:
-        "Participants take well-known taglines and give them a creative twist. The goal is to make it witty, humorous, or tech-related. The event tests creativity, wordplay, and marketing instincts. Judges look for originality and comedic impact. A fun challenge that sparks laughter and innovation",
+      shortDesc: "Tagline Twist: Rewrite famous slogans with a fun twist",
+      fullDesc: [
+        "Two to three members per team.",
+        "Participants must creatively twist a well-known slogan or tagline while keeping its original brand reference clear.",
+        "It may be witty, funny, or give the slogan a fresh, humorous, or promotional meaning.",
+      ],
       prizes: "",
       duration: "30 minutes",
       team: "1-2 members",
@@ -157,10 +185,14 @@ const EventsSection = () => {
 
           {isExpanded && (
             <div className="mt-6 space-y-4 animate-slide-up border-t border-white/10 pt-6">
-              <p className="text-foreground/80 leading-relaxed">
-                {event.fullDesc}
-              </p>
-              <div className="grid md:grid-cols-3 gap-4">
+              <ul className="list-disc list-inside text-foreground/80 leading-relaxed space-y-2">
+                {event.fullDesc.map((point: string, idx: number) => (
+                  <li key={idx}>{point}</li>
+                ))}
+              </ul>
+              {/* Place, Duration, and Team Size details will be updated soon. */}
+
+              {/* <div className="grid md:grid-cols-3 gap-4">
                 <div className="glass rounded-lg p-3">
                   <div className="text-sm text-foreground/60">Place</div>
                   <div className="text-accent font-semibold">
@@ -179,7 +211,7 @@ const EventsSection = () => {
                     {event.team}
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           )}
         </div>

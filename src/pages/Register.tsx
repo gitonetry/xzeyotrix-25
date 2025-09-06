@@ -366,8 +366,7 @@ const Register = () => {
             Join <span className="text-primary neon-text">Nexnival</span>'25
           </h1>
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
-            Register now to secure your spot in the ultimate hackathon
-            experience
+            Register now to secure your spot in the National Level Symposium
           </p>
         </div>
 
@@ -628,11 +627,11 @@ const Register = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="paper-presentation">
-                        Paper Presentation
+                        Insight Expo
                       </SelectItem>
-                      <SelectItem value="tech-quiz">Tech Quiz</SelectItem>
-                      <SelectItem value="tech-debate">Tech Debates</SelectItem>
-                      <SelectItem value="ui-ux">UI/UX Design</SelectItem>
+                      <SelectItem value="tech-quiz">QuizWiz</SelectItem>
+                      <SelectItem value="tech-debate">Tech Tussle</SelectItem>
+                      <SelectItem value="ui-ux">Pixel Perfect</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -651,14 +650,10 @@ const Register = () => {
                       <SelectValue placeholder="Select your non-technical event" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="connection">Connection</SelectItem>
-                      <SelectItem value="adzap">AdZap</SelectItem>
-                      <SelectItem value="pictionary">
-                        Tech Pictionary
-                      </SelectItem>
-                      <SelectItem value="tagline-twist">
-                        Tagline Twist
-                      </SelectItem>
+                      <SelectItem value="connection">NetworX</SelectItem>
+                      <SelectItem value="adzap">Spotlight Snap</SelectItem>
+                      <SelectItem value="pictionary">Doodle Vision</SelectItem>
+                      <SelectItem value="tagline-twist">Brand Buzz</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
