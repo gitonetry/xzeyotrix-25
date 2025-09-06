@@ -159,11 +159,19 @@ const EventsSection = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div
-                className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                  type === "technical"
-                    ? "bg-gradient-primary"
-                    : "bg-gradient-to-r from-accent to-primary"
-                }`}
+                className={`w-12 h-12 rounded-lg flex items-center justify-center
+    ${
+      type === "technical"
+        ? "bg-gradient-primary"
+        : "bg-gradient-to-r from-accent to-primary"
+    }`}
+                style={{
+                  minWidth: "3rem", // 12 * 0.25rem = 3rem
+                  minHeight: "3rem",
+                  maxWidth: "3rem",
+                  maxHeight: "3rem",
+                  aspectRatio: "1 / 1", // ensures square shape
+                }}
               >
                 <IconComponent className="h-6 w-6 text-white" />
               </div>

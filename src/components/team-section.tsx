@@ -153,15 +153,16 @@ const TeamSection = () => {
               Feel free to reach out to any of our coordinators for more
               information about the event.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg neon-glow">
-                <Mail className="h-5 w-5 mr-2 inline" />
-                Contact Us
-              </button>
-              {/* <button className="glass-hover border border-primary text-primary px-6 py-3 rounded-lg">
+            <a
+              href="mailto:cse_association@psr.edu.in"
+              className="bg-gradient-primary text-primary-foreground font-semibold px-6 py-3 rounded-lg neon-glow inline-flex items-center justify-center"
+            >
+              <Mail className="h-5 w-5 mr-2 inline" />
+              Contact Us
+            </a>
+            {/* <button className="glass-hover border border-primary text-primary px-6 py-3 rounded-lg">
                 Join Discord
               </button> */}
-            </div>
           </div>
         </div>
       </div>

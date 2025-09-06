@@ -1,6 +1,7 @@
 import { Download, FileText, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import NexnivalBrouchure from "@/assets/nexnival25.jpeg";
+import NexnivalPdf from "@/assets/Nexnival25.pdf";
 
 const BrochureSection = () => {
   return (
@@ -101,7 +102,7 @@ const BrochureSection = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href={NexnivalBrouchure}
+                    href={NexnivalPdf}
                     download="Nexnival25.pdf"
                     target="_blank"
                     rel="noopener noreferrer"

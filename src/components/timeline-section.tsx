@@ -41,7 +41,7 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "Paper Presentation",
+    title: "Insight Expo",
     startTime: "10:00",
     duration: 3.9,
     color: "#4680ffff",
@@ -49,7 +49,7 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "Tech Quiz",
+    title: "QuizWiz",
     startTime: "10:00",
     duration: 3.9,
     color: "#ff007f",
@@ -57,7 +57,7 @@ const timelineEvents = [
     row: 1,
   },
   {
-    title: "Tech Debates",
+    title: "Tech Tussle",
     startTime: "10:00",
     duration: 3.9,
     color: "#00ffa3",
@@ -65,7 +65,7 @@ const timelineEvents = [
     row: 2,
   },
   {
-    title: "UI / UX Design Challenge",
+    title: "Pixel Perfect",
     startTime: "10:00",
     duration: 3.9,
     color: "#00e0ff",
@@ -81,7 +81,7 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "Connections",
+    title: "NetworX",
     startTime: "1:00",
     duration: 3.5,
     color: "#b967ff",
@@ -89,7 +89,7 @@ const timelineEvents = [
     row: 0,
   },
   {
-    title: "AdZap",
+    title: "Spotlight Snap",
     startTime: "1:00",
     duration: 3.5,
     color: "#ff9900",
@@ -97,7 +97,7 @@ const timelineEvents = [
     row: 1,
   },
   {
-    title: "Tech Pictionary",
+    title: "Doodle Vision",
     startTime: "1:00",
     duration: 3.5,
     color: "#ff00ff",
@@ -105,7 +105,7 @@ const timelineEvents = [
     row: 2,
   },
   {
-    title: "Tagline Twist",
+    title: "Brand Buzz",
     startTime: "1:00",
     duration: 3.5,
     color: "#a3ff12",
