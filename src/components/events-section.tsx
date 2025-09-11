@@ -22,11 +22,12 @@ const EventsSection = () => {
       title: "Insight Expo",
       icon: Presentation,
       shortDesc:
-        "Paper Presentation: Present research or innovative ideas formally and clearly",
+        "Paper Presentation: A formal way to present the findings of a research project, an idea, or information, typically in an academic setting",
       fullDesc: [
         "Two members per team.",
         "Presentations should not exceed 5 minutes, followed by 3 minutes for Q&A session.",
         "Judges will evaluate based on originality, research depth, innovation, and presentation skills.",
+        "Team size: Max 3 members.",
       ],
       prizes: "",
       duration: "5 minutes",
@@ -37,12 +38,13 @@ const EventsSection = () => {
       title: "QuizWiz",
       icon: Lightbulb,
       shortDesc:
-        "Tech Quiz: Compete in a timed quiz on core technical subjects",
+        "Tech Quiz: Quiz competition with questions from AI, Machine Learning, Operating Systems, DBMS, and other core subjects",
       fullDesc: [
         "Two members per team.",
         "The event will have three rounds: preliminary, rapid-fire, and final.",
         "The use of mobile phones or any gadgets is strictly prohibited.",
         "In case of a tie, a tiebreaker question will decide the winner.",
+        "Team size: 2 members per team.",
       ],
       prizes: "",
       duration: "",
@@ -53,11 +55,12 @@ const EventsSection = () => {
       title: "Tech Tussle",
       icon: User,
       shortDesc:
-        "Tech Debate: Debate trending tech topics with facts and logic",
+        "Tech Debate: Organized debates on controversial topics in tech,such as data privacy, AI ethics, and the impact of automation",
       fullDesc: [
         "A tech topic will be provided and the participant should present their views on it.",
         "Each participant is required to take utmost 2 to 3 minutes.",
         "The winner will be decided based on criteria like clarity, evidence, and delivery.",
+        "Team size: 1",
       ],
       prizes: "",
       duration: "30 minutes",
@@ -68,10 +71,11 @@ const EventsSection = () => {
       title: "Pixel Perfect",
       icon: Palette,
       shortDesc:
-        "UI/UX: Design creative, user-friendly app or website mock-ups",
+        "UI/UX: Design mock-ups for a mobile app or website. Focus on creativity, usability, and user experience",
       fullDesc: [
         "The participant’s design should align with the event’s theme or assigned app concept.",
         "The winner will be judged based on creativity, usability, and aesthetics.",
+        "Team size: 1",
       ],
       prizes: "",
       duration: "30 minutes",
@@ -84,11 +88,13 @@ const EventsSection = () => {
       id: "pitch-perfect",
       title: "NetworX",
       icon: Link,
-      shortDesc: "Connection: Find the hidden link between given clues",
+      shortDesc:
+        "Connection: Find the link between images/texts, based on logic &amp; tech",
       fullDesc: [
         "Two to three members per team.",
         "Participants must identify common themes or patterns to recognize recurring ideas or similarities.",
-        "They must then analyze technological or logical relationships to see how different elements connect and impact each other.",
+        "They must analyze technological or logical relationships to see how different elements connect and impact each other.",
+        "Team size: 3 members.",
       ],
       prizes: "",
       duration: "30 minutes",
@@ -99,11 +105,12 @@ const EventsSection = () => {
       title: "Spotlight Snap",
       icon: Clapperboard,
       shortDesc:
-        "AdZap: Create fun, impromptu ads for imaginary/funny tech items",
+        "AdZap: Teams act fun, impromptu ads for imaginary / funny tech items given to them",
       fullDesc: [
         "Participants are given an imaginary tech item and 10-15 minutes to create a short ad.",
-        "The evaluation criteria include creativity and quick thinking.",
-        "The ad must highlight the tech item’s features, benefits, and a catchy tagline.",
+        "Evaluation will be based on creativity and quick thinking.",
+        "The ad must highlight the item’s features, benefits, and include a catchy tagline.",
+        "Team Size: 2 to 4 members per team",
       ],
       prizes: "",
       duration: "30 minutes",
@@ -113,10 +120,12 @@ const EventsSection = () => {
       id: "ui-ux",
       title: "Doodle Vision",
       icon: VideotapeIcon,
-      shortDesc: "Tech Pictionary: Draw tech terms for your team to guess",
+      shortDesc:
+        "Tech Pictionary: Players take turns drawing technical terms or concepts while their teammates try to guess them within a time limit.",
       fullDesc: [
-        "Two to three members per team.",
-        "The team that makes the maximum right guesses will be considered the winner.",
+        "Two to Three members per team.",
+        "The team that makes the maximum right guesses will be considered as the winner.",
+        "Team size: 2 members.",
       ],
       prizes: "",
       duration: "30 minutes",
@@ -126,11 +135,13 @@ const EventsSection = () => {
       id: "brain-teasers",
       title: "Brand Buzz",
       icon: Shuffle,
-      shortDesc: "Tagline Twist: Rewrite famous slogans with a fun twist",
+      shortDesc:
+        "Tagline Twist: Creatively altering a slogan or tagline to give it a new meaning or association, often for humorous or promotional purposes.",
       fullDesc: [
-        "Two to three members per team.",
-        "Participants must creatively twist a well-known slogan or tagline while keeping its original brand reference clear.",
-        "It may be witty, funny, or give the slogan a fresh, humorous, or promotional meaning.",
+        "Two to Three members per team.",
+        "The participants must creatively twist a well-known slogan or tagline while keeping its original brand reference clear.",
+        "It may be witty, funny or give the slogan a fresh, humorous, or promotional meaning.",
+        "Team size: 2 members.",
       ],
       prizes: "",
       duration: "30 minutes",
