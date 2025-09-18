@@ -107,28 +107,7 @@ const Register = () => {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       let file = e.target.files[0];
-      const options = { maxSizeMB: 1, useWebWorker: true };
-      try {
-        if (file.size > 5 * 1024 * 1024) {
-          toast({
-            title: "Large file!",
-            description:
-              "Please select an image smaller than 5MB for faster upload.",
-            variant: "destructive",
-          });
-          return;
-        }
-        const compressedFile = await imageCompression(file, options);
-        setSelectedFile(compressedFile);
-      } catch (err: any) {
-        // Fallback: use original file if compression fails
-        toast({
-          title: "Image compression failed!",
-          description: "Uploading original image instead.",
-          variant: "default",
-        });
-        setSelectedFile(file);
-      }
+      setSelectedFile(file);
     }
   };
 
